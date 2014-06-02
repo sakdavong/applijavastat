@@ -27,7 +27,8 @@ public class Racine {
     public Racine() {
         File fichier = new File("src/sauvegardeIndicateurs.dat");
         if (fichier.exists()){
-            System.out.println("on charge le fichier");
+            System.out.println("on charge le fichier et boum");
+            
             traces = new IndicateursImpl(this);
             traces.charger(fichier);
         }else {
@@ -39,12 +40,12 @@ public class Racine {
         }
         tracesEtIndicateursCalcules = new IndicateursImpl(this);
         tracesEtIndicateursCalcules.setTr(traces.getTr());
-        
         //on construit la Hashmap qui contiendra les indicateurs remontés du serveur 
         //et les indicateurs calculés
         tracesEtIndicateursCalcules.calculerMoyenneNoteNormalisee();
         tracesEtIndicateursCalcules.moyenneGlobaleNormaliseAvantApres();
-        tracesEtIndicateursCalcules.afficher();
+        tracesEtIndicateursCalcules.classerUsers();
+        //tracesEtIndicateursCalcules.afficher();
     }
     
    /**
