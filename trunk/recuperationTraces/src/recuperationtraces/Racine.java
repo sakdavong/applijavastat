@@ -45,7 +45,7 @@ public class Racine {
         tracesEtIndicateursCalcules.calculerMoyenneNoteNormalisee();
         tracesEtIndicateursCalcules.moyenneGlobaleNormaliseAvantApres();
         tracesEtIndicateursCalcules.classerUsers();
-        //tracesEtIndicateursCalcules.afficher();
+        tracesEtIndicateursCalcules.afficher();
     }
     
    /**
