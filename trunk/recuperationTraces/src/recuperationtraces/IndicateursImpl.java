@@ -26,7 +26,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-//pour tester le commit de svn
+
 public class IndicateursImpl implements Indicateurs {
     
     private HashMap<String, List<String>> tr;
@@ -99,11 +99,10 @@ public class IndicateursImpl implements Indicateurs {
                         return getPreferredSize().width < getParent().getWidth();
                     }
                 };;
-                System.out.println("tst /n");
                 for (int j=0; j<tr.get("Nom").size()+1; j++)
                     jt.getColumnModel().getColumn(j).setMinWidth(j==0?300: 200);
-                System.out.println("tst 2 /n");
                 JScrollPane js = new JScrollPane(jt);
+                
                 js.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
                 js.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
                 fr.setContentPane(js);
@@ -338,5 +337,42 @@ public class IndicateursImpl implements Indicateurs {
         for(int i=0;i<tr.get("Nom").size();i++){
             tr.get(nom).add(String.valueOf(somme[i]));
         }
+        
+    }
+    /**
+     * calcule la moyenne de toutes les notes normalisées AVANT entre elles et APRES entre elles
+     * pour obtenir une note globale normalisé avant et une note globale normalisé apres
+     */
+    public void moyenneGlobaleNormaliseAvantApres(){
+        int numeroCarte=0;          //numero de la carte parcouru
+        List<String> noteNormAvant = new ArrayList<>(); //liste des notes normalisé de chaque carte
+        List<String> noteNormApres = new ArrayList<>();
+        
+       //tant qu'il existe des cartes
+        while(tr.containsKey("manip1_carte"+numeroCarte+"/avant/NoteQCM_Normalisee")) {
+            
+            //parcours de toutes les clés
+            for (String key : tr.keySet()) {
+                //si on trouve l'indicateur (de note normalisée avant)
+                if (key.equals("manip1_carte"+numeroCarte+"/avant/NoteQCM_Normalisee")){
+                    noteNormAvant.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur (de note normalisée apres)
+                } else if (key.equals("manip1_carte"+numeroCarte+"/apres/NoteQCM_Normalisee")){
+                    noteNormApres.add(key);//on l'ajoute à la liste
+                }
+            }
+            numeroCarte++;
+        }
+        //on calcule les moyennes d'avant et apres et on les ajoute a la hashMap
+        creerIndicateurMoyenne("manip1_MoyenneQCM_Avant_Normalisee",noteNormAvant);
+        creerIndicateurMoyenne("manip1_MoyenneQCM_Apres_Normalisee",noteNormAvant);
+        
+    }
+    /**
+     * classe les utilisateurs en deux catégories par rapport à la médianne des notes avant
+     * crée un nouvel indicateurs qui pourra contenir deux valeurs faible ou fort
+     */
+    public void classerUsers() {
+        
     }
 }

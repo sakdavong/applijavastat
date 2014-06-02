@@ -43,7 +43,7 @@ public class Racine {
         //on construit la Hashmap qui contiendra les indicateurs remontés du serveur 
         //et les indicateurs calculés
         tracesEtIndicateursCalcules.calculerMoyenneNoteNormalisee();
-        
+        tracesEtIndicateursCalcules.moyenneGlobaleNormaliseAvantApres();
         tracesEtIndicateursCalcules.afficher();
     }
     
