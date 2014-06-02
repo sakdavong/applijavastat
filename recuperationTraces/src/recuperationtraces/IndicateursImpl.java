@@ -375,7 +375,7 @@ public class IndicateursImpl implements Indicateurs {
      * crée un nouvel indicateurs qui pourra contenir deux valeurs faible ou fort
      */
     public void classerUsers() {
-         List<String> listeTrie = tr.get("manip1_MoyenneQCM_Avant_Normalisee");
+        List<String> listeTrie = tr.get("manip1_MoyenneQCM_Avant_Normalisee");
         for (String t : listeTrie) {
             System.out.println(t);
         }
