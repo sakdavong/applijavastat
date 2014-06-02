@@ -379,6 +379,7 @@ public class IndicateursImpl implements Indicateurs {
         for (String t : listeTrie) {
             System.out.println(t);
         }
+        System.out.println("liste trié");
         Collections.sort(listeTrie);
         for (String t : listeTrie) {
             System.out.println(t);
