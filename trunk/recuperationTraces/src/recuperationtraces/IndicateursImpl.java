@@ -375,42 +375,50 @@ public class IndicateursImpl implements Indicateurs {
      * crée un nouvel indicateurs qui pourra contenir deux valeurs faible ou fort
      */
     public void classerUsers() {
-       List<String> listeTrie = new ArrayList<>();
-        /*for (String t : listeTrie) {
-            System.out.println(t);
-        }*/
+       List<String> liste = tr.get("manip1_MoyenneQCM_Avant_Normalisee");
+       List<String> listeClassement = new ArrayList<>();
+       double mediane = calculerMediane(liste);
+       
+       
+       for (String t : liste) {
+           if (Double.parseDouble(t)<mediane){
+               listeClassement.add("faible");
+           }else {
+               listeClassement.add("fort");
+           }
+        }
+       tr.put("manip1_classement", listeClassement);
     }
     /**
      * Calcule la médiane d'une liste de String(avec valeurs entieres)
      * @param liste la liste de valeurs dont il faut trouver la médiane
-     * @return la médiane de la liste
+     * @return la médiane de la liste 
      */
     public double calculerMediane(List<String> liste){
-        double mediane=0;
+        double mediane;
+        //liste de double
         List<Double> listeConverti = new ArrayList<>();
       //  List<String> listeTrie = tr.get("manip1_MoyenneQCM_Avant_Normalisee");
         
-        
-        
+        //rempli la liste de double avec les valeur contenu dans la liste de String
         for (String t : liste) {
             listeConverti.add(Double.parseDouble(t));
-            System.out.println(t);
         }
         
         //permet de trier la liste 
         Collections.sort(listeConverti);
         
-        //si la liste est de longueur paire
+        /**si la liste est de longueur paire*/
         if (liste.size()%2 == 0) {
+            /**on prend la moyenne entre les deux valeurs situés au milieu*/
             double medianeTemp1 = listeConverti.get(listeConverti.size()/2);
             double medianeTemp2 = listeConverti.get((listeConverti.size()/2)-1);
             mediane = (medianeTemp1+medianeTemp2)/2;
-        //si la liste est de longueur impaire
+        /**si la liste est de longueur impaire*/
         }else{
-            //on prend la valeur situé au milieu
+            /**on prend la valeur situé au milieu*/
             mediane = listeConverti.get(listeConverti.size()/2);
         }        
-        System.out.println(liste.size()/2 + " la médiane => "+mediane);
         return mediane;
     }
 }
