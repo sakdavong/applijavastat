@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -374,6 +375,13 @@ public class IndicateursImpl implements Indicateurs {
      * crée un nouvel indicateurs qui pourra contenir deux valeurs faible ou fort
      */
     public void classerUsers() {
-        
+         List<String> listeTrie = tr.get("manip1_MoyenneQCM_Avant_Normalisee");
+        for (String t : listeTrie) {
+            System.out.println(t);
+        }
+        Collections.sort(listeTrie);
+        for (String t : listeTrie) {
+            System.out.println(t);
+        }
     }
 }
