@@ -367,7 +367,7 @@ public class IndicateursImpl implements Indicateurs {
         }
         //on calcule les moyennes d'avant et apres et on les ajoute a la hashMap
         creerIndicateurMoyenne("manip1_MoyenneQCM_Avant_Normalisee",noteNormAvant);
-        creerIndicateurMoyenne("manip1_MoyenneQCM_Apres_Normalisee",noteNormAvant);
+        creerIndicateurMoyenne("manip1_MoyenneQCM_Apres_Normalisee",noteNormApres);
         
     }
     /**
