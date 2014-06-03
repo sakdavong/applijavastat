@@ -59,6 +59,7 @@ public class IndicateursImpl implements Indicateurs {
     @Override
     public Indicateurs creerVueIndicateurs(List<String> ARechercher) {
         //nouvel indicateurImpl qui contiendra la vue
+        
         IndicateursImpl indTemp = new IndicateursImpl(r);
         
         return indTemp;
