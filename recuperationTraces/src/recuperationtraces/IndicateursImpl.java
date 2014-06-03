@@ -59,10 +59,15 @@ public class IndicateursImpl implements Indicateurs {
     @Override
     public Indicateurs creerVueIndicateurs(List<String> ARechercher) {
         //nouvel indicateurImpl qui contiendra la vue
-        
-        IndicateursImpl indTemp = new IndicateursImpl(r);
-        
-        return indTemp;
+        IndicateursImpl indImpl=new IndicateursImpl(r);
+        for(String s:ARechercher){
+            // si la hashMap contient la clé 
+            if(this.getTr().containsKey(s)){
+                //on rajoute la clé et la liste de valeurs dans la nouvelle vue
+                indImpl.getTr().put(s, this.getTr().get(s));
+            }
+        }
+        return indImpl;
     }
 
     @Override
