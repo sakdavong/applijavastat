@@ -219,7 +219,7 @@ public class IndicateursImpl implements Indicateurs {
         }
     }
     /**
-     * recherche les notes normalisées Avant et Apres de chaque carte
+     * recherche les notes normalisées Avant et Apres de chaque carte à partir des notes normalisées des questions
      * puis calcule la moyenne et l'ajoute à la hashMap concerné
      */
     public void calculerMoyenneNoteNormalisee(){
@@ -421,4 +421,40 @@ public class IndicateursImpl implements Indicateurs {
         }        
         return mediane;
     }
+    
+    /**
+     * calcule les moyennes des SAE, de la difficulteTache et de l'EffortMental
+     * (on les a regroupés pour éviter de faire trois fois la même boucle)
+     * puis les ajoute à la HashMap
+     */
+    public void moyenneVariableAutoEvaluation(){
+        //listes qui contiendront les différents indicateurs qui rentreront dans le calcul de la moyenne
+        List<String> listeSAE = new ArrayList<>();
+        List<String> listeEffortMental = new ArrayList<>();
+        List<String> listeDifficulteTache = new ArrayList<>();
+        int numeroCarte=0;
+        
+        //tant qu'il existe des cartes
+        while(tr.containsKey("SAEcarte"+numeroCarte)) {
+            
+            //parcours de toutes les clés
+            for (String key : tr.keySet()) {
+                //si on trouve l'indicateur de SAE
+                if (key.equals("SAEcarte"+numeroCarte)){
+                    listeSAE.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur de difficulteTache
+                } else if (key.equals("difficulteTacheCarte"+numeroCarte)){
+                    listeDifficulteTache.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur d'EffortMental
+                } else if (key.equals("effortMentalCarte"+numeroCarte)){
+                    listeEffortMental.add(key);//on l'ajoute à la liste
+                }
+            }
+        }
+        //on calcule les moyennes puis on les ajoute à la HashMap
+        creerIndicateurMoyenne("Moyenne_SAE", listeSAE);
+        creerIndicateurMoyenne("Moyenne_difficulteTache", listeDifficulteTache);
+        creerIndicateurMoyenne("Moyenne_EffortMental", listeEffortMental);
+    }
 }
+    
