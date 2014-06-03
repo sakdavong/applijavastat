@@ -434,33 +434,75 @@ public class IndicateursImpl implements Indicateurs {
      * puis les ajoute à la HashMap
      */
     public void moyenneVariableAutoEvaluation(){
+        // l'espace devant les indicateurs est présent dans le serveur 
+        // on l'a donc conservé pour la recherche
+
         //listes qui contiendront les différents indicateurs qui rentreront dans le calcul de la moyenne
         List<String> listeSAE = new ArrayList<>();
         List<String> listeEffortMental = new ArrayList<>();
         List<String> listeDifficulteTache = new ArrayList<>();
-        int numeroCarte=0;
+        int numeroCarte=1;
         
         //tant qu'il existe des cartes
-        while(tr.containsKey("SAEcarte"+numeroCarte)) {
+        while(tr.containsKey(" SAECarte"+numeroCarte)) {
             
             //parcours de toutes les clés
             for (String key : tr.keySet()) {
                 //si on trouve l'indicateur de SAE
-                if (key.equals("SAEcarte"+numeroCarte)){
+                if (key.equals(" SAECarte"+numeroCarte)){
                     listeSAE.add(key);//on l'ajoute à la liste
                 //si on trouve l'indicateur de difficulteTache
-                } else if (key.equals("difficulteTacheCarte"+numeroCarte)){
+                } else if (key.equals(" difficulteTacheCarte"+numeroCarte)){
                     listeDifficulteTache.add(key);//on l'ajoute à la liste
                 //si on trouve l'indicateur d'EffortMental
-                } else if (key.equals("effortMentalCarte"+numeroCarte)){
+                } else if (key.equals(" effortMentalCarte"+numeroCarte)){
                     listeEffortMental.add(key);//on l'ajoute à la liste
                 }
             }
+            numeroCarte++;
         }
         //on calcule les moyennes puis on les ajoute à la HashMap
         creerIndicateurMoyenne("Moyenne_SAE", listeSAE);
         creerIndicateurMoyenne("Moyenne_difficulteTache", listeDifficulteTache);
         creerIndicateurMoyenne("Moyenne_EffortMental", listeEffortMental);
+    }
+    /**
+     * crée les indicateurs contenant le nombre moyen d'utilisation de chaque aide
+     * puis la moyenne du nombre d'utilisation des aides instrumentales et executive
+     * puis la moyenne globale du nombre d'utilisation d'aides
+     */
+    public void nbUtilisationAide(){
+        //listes qui contiendront les indicateurs necessaire aux calcul de moyenne
+        List<String> listeAideInstru = new ArrayList<>();
+        List<String> listeAideExe = new ArrayList<>();
+        List<String> listeEvitement = new ArrayList<>();
+        int numeroCarte=0; 
+        
+        //tant qu'il existe des cartes
+        while(tr.containsKey("manip1_carte"+numeroCarte+"/nbUtilisationAide1")) {
+            
+            //parcours de toutes les clés
+            for (String key : tr.keySet()) {
+                //si on trouve l'indicateur nbUtilisationAide1
+                if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationAide1")){
+                    listeAideInstru.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur nbUtilisationAide2
+                } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationAide2")){
+                    listeAideInstru.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur nbUtilisationAide3
+                } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationAide3")){
+                    listeAideExe.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur nbEvitement1
+                } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationEvitement1")){
+                    listeAideExe.add(key);//on l'ajoute à la liste
+                }
+            }
+            numeroCarte++;
+        }
+        
+        //on calcule les moyennes puis on les ajoute à la HashMap
+        creerIndicateurMoyenne("Moyenne_NbUtilisationsAideInstru", listeAideInstru);
+        creerIndicateurMoyenne("Moyenne_NbUtilisationsAideExe", listeAideExe);
     }
 }
     
