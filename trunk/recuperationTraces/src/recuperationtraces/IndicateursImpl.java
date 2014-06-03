@@ -62,9 +62,9 @@ public class IndicateursImpl implements Indicateurs {
         IndicateursImpl indImpl=new IndicateursImpl(r);
         for(String s:ARechercher){
             // si la hashMap contient la clé 
-            if(this.getTr().containsKey(s)){
+            if(tr.containsKey(s)){
                 //on rajoute la clé et la liste de valeurs dans la nouvelle vue
-                indImpl.getTr().put(s, this.getTr().get(s));
+                indImpl.getTr().put(s, tr.get(s));
             }
         }
         return indImpl;
@@ -472,10 +472,12 @@ public class IndicateursImpl implements Indicateurs {
      * puis la moyenne globale du nombre d'utilisation d'aides
      */
     public void nbUtilisationAide(){
-        //listes qui contiendront les indicateurs necessaire aux calcul de moyenne
-        List<String> listeAideInstru = new ArrayList<>();
-        List<String> listeAideExe = new ArrayList<>();
-        List<String> listeEvitement = new ArrayList<>();
+        //listes qui contiendront les indicateurs necessaires aux calculs de moyenne
+        List<String> listeAideInstru = new ArrayList<>(); 
+        List<String> listeAideExe = new ArrayList<>();    
+        List<String> listeEvitement1 = new ArrayList<>();
+        List<String> listeEvitement2 = new ArrayList<>();
+        
         int numeroCarte=0; 
         
         //tant qu'il existe des cartes
@@ -494,15 +496,23 @@ public class IndicateursImpl implements Indicateurs {
                     listeAideExe.add(key);//on l'ajoute à la liste
                 //si on trouve l'indicateur nbEvitement1
                 } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationEvitement1")){
-                    listeAideExe.add(key);//on l'ajoute à la liste
+                    listeEvitement1.add(key);//on l'ajoute à la liste
+                //si on trouve l'indicateur nbEvitement2
+                } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationEvitement2")){
+                    listeEvitement2.add(key);//on l'ajoute à la liste
                 }
             }
+            //on passe à la carte suivante
             numeroCarte++;
         }
         
         //on calcule les moyennes puis on les ajoute à la HashMap
         creerIndicateurMoyenne("Moyenne_NbUtilisationsAideInstru", listeAideInstru);
         creerIndicateurMoyenne("Moyenne_NbUtilisationsAideExe", listeAideExe);
+        creerIndicateurMoyenne("Moyenne_NbUtilisationsEvitement1", listeEvitement1);
+        creerIndicateurMoyenne("Moyenne_NbUtilisationsEvitement2", listeEvitement2);
+     
     }
+    
 }
     
