@@ -7,6 +7,7 @@
 package recuperationtraces;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.junit.After;
@@ -22,7 +23,29 @@ import static org.junit.Assert.*;
  */
 public class IndicateursImplTest {
     
+   /* HashMap<String, List<String>> hmp;
+    List<String> lst,lst2,lst0,lst1;
+    List<String> lst01,lst12,lst10,lst11;
+    */
     public IndicateursImplTest() {
+        
+   /*   hmp=new HashMap();
+        lst=new ArrayList<>();
+        lst2=new ArrayList<>();
+        lst.add("ut1");lst0.add("146");lst1.add("54");lst2.add("51");
+        lst.add("ut2");lst0.add("81");lst1.add("146");lst2.add("166");
+        lst.add("ut3");lst0.add("158");lst1.add("21");lst2.add("8");
+        lst.add("ut4");lst0.add("85");lst1.add("138");lst2.add("128");
+        lst.add("ut5");lst0.add("54");lst1.add("95");lst2.add("65");
+        
+        lst01.add("ut1");lst12.add("146");lst11.add("54");lst10.add("51");
+        lst01.add("ut2");lst12.add("81");lst11.add("146");lst10.add("166");
+        lst01.add("ut3");lst12.add("158");lst11.add("21");lst10.add("8");
+        lst01.add("ut4");lst12.add("85");lst11.add("138");lst10.add("128");
+        lst01.add("ut5");lst12.add("54");lst11.add("95");lst10.add("65");
+        
+        hmp.put("nom",lst);hmp.put("SAECarte0",lst0);hmp.put("SAECarte1",lst1);hmp.put("SAECarte2",lst2);
+     */   
     }
     
     @BeforeClass
@@ -210,13 +233,24 @@ public class IndicateursImplTest {
     @Test
     public void testIndicateurEcart() {
         System.out.println("indicateurEcart");
-        String nom = "";
-        String apres = "";
-        String avant = "";
-        IndicateursImpl instance = null;
+        List<String> lst,lstAvant,lstApres;
+        lst=new ArrayList<>();
+        lstAvant=new ArrayList<>();
+        lstApres=new ArrayList<>();
+        String nom = "ecart!!";
+        String apres = "apres";
+        String avant = "avant";
+        lst.add("ut1");lst.add("ut2");
+        lstAvant.add("2");lstAvant.add("");
+        lstApres.add("3");lstApres.add("");
+        IndicateursImpl instance = new IndicateursImpl();
+        instance.getTr().put("Nom", lst);
+        instance.getTr().put("apres", lstApres);
+        instance.getTr().put("avant", lstAvant);
         instance.indicateurEcart(nom, apres, avant);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.afficher();
+        
+        
     }
 
     /**

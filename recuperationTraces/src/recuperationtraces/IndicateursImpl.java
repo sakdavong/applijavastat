@@ -51,10 +51,9 @@ public class IndicateursImpl implements Indicateurs {
      * @param i indicateur choisi comme base pour en construire un autre 
      * @exemple notamment utilisé pour créer des vues à partir d'autre vues ...
      */
-    public IndicateursImpl(Racine r,Indicateurs i ) {
-        this.r=r;
-        this.tr=i.getTr();
-    }
+    public IndicateursImpl() {
+        tr = new HashMap();
+       }
     
     @Override
     public Indicateurs creerVueIndicateurs(List<String> ARechercher) {
@@ -311,7 +310,7 @@ public class IndicateursImpl implements Indicateurs {
         // parcours les deux listes de valeurs des indicateurs à soustraire
         for(int i=0;i<tr.get("Nom").size();i++){
             //s’il n’y a pas une valeur nulle dans l’un des deux indicateurs (après,avant) il fait la soustraction
-            if(!tr.get(apres).get(i).equals("")||!tr.get(avant).get(i).equals("")) 
+            if(!tr.get(apres).get(i).equals("")&&!tr.get(avant).get(i).equals("")) 
                 //et l'ajoute à la liste de valeurs
                 tr.get(nom).add(String.valueOf(Double.parseDouble(tr.get(apres).get(i))-Double.parseDouble(tr.get(avant).get(i))));
             //sinon il met une chaine vide

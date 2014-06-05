@@ -52,7 +52,7 @@ public class Racine {
         System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
         tracesEtIndicateursCalcules.afficher();
     }
-    
+     
    /**
     * une méthode pour recuprer les Traces du serveur et les sauvegarder dans une HashMap 
     * pour pouvoir l'utiliser aprés sans avoir à se reconnecter à chaque fois 
