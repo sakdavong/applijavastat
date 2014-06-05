@@ -259,12 +259,26 @@ public class IndicateursImplTest {
     @Test
     public void testCreerIndicateurSomme() {
         System.out.println("creerIndicateurSomme");
-        String nom = "";
-        List<String> listeInd = null;
-        IndicateursImpl instance = null;
+        String nom = "somme";
+        List<String> listeInd,lst1,lst2,lst3,lst;
+        listeInd = new ArrayList<>();
+        lst=new ArrayList<>();
+        lst1=new ArrayList<>();
+        lst2=new ArrayList<>();
+        lst3=new ArrayList<>();
+        lst.add("ut1");lst.add("ut2");lst.add("ut3");
+        lst1.add("2");lst2.add("2");lst3.add("");
+        lst1.add("4");lst2.add("2");lst3.add("1");
+        lst1.add("1");lst2.add("2");lst3.add("5");
+        listeInd.add("ind1");listeInd.add("ind2");listeInd.add("ind3");
+        IndicateursImpl instance = new IndicateursImpl();
+        instance.getTr().put("ind1", lst1);
+        instance.getTr().put("ind2", lst2);
+        instance.getTr().put("ind3", lst3);
+        instance.getTr().put("Nom", lst);
         instance.creerIndicateurSomme(nom, listeInd);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.afficher();
     }
 
     /**
@@ -273,10 +287,10 @@ public class IndicateursImplTest {
     @Test
     public void testMoyenneGlobaleNormaliseAvantApres() {
         System.out.println("moyenneGlobaleNormaliseAvantApres");
-        IndicateursImpl instance = null;
+        IndicateursImpl instance = new IndicateursImpl();
         instance.moyenneGlobaleNormaliseAvantApres();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.afficher();
     }
 
     /**
