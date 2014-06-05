@@ -102,10 +102,15 @@ public class IndicateursImplTest {
     @Test
     public void testAfficher() {
         System.out.println("afficher");
-        IndicateursImpl instance = null;
+        IndicateursImpl instance = new IndicateursImpl();
+        
+        List<String> lst=new ArrayList<>();
+        lst.add("ut1");
+        instance.getTr().put("Nom", lst);
+        
         instance.afficher();
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -311,13 +316,17 @@ public class IndicateursImplTest {
     @Test
     public void testCalculerMediane() {
         System.out.println("calculerMediane");
-        List<String> liste = null;
-        IndicateursImpl instance = null;
-        double expResult = 0.0;
+        List<String> liste = new ArrayList<>();
+        IndicateursImpl instance = new IndicateursImpl();
+        liste.add("-1");
+        liste.add("0");
+        liste.add("2");
+        liste.add("5");
+        double expResult = 1;
         double result = instance.calculerMediane(liste);
-        assertEquals(expResult, result, 0.0);
+        assertEquals(expResult, result,0.0);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("resultat attendu: "+expResult+"/ resultat du teste: "+result);
     }
 
     /**
