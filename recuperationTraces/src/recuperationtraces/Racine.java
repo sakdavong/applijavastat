@@ -50,6 +50,10 @@ public class Racine {
         System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
         tracesEtIndicateursCalcules.comportementsRA();
         System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
+        tracesEtIndicateursCalcules.perfApprentissage();
+        tracesEtIndicateursCalcules.butMaitrisePerformance();
+        tracesEtIndicateursCalcules.variableMotivationnelle();
+        System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
         tracesEtIndicateursCalcules.afficher();
     }
      
