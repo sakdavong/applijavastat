@@ -257,6 +257,7 @@ public class IndicateursImpl implements Indicateurs{
             //on calcule les moyennes d'avant et apres et on les ajoute a la hashMap
             creerIndicateurMoyenne("manip1_carte"+numeroCarte+"/avant/NoteQCM_Normalisee",listeAv);
             creerIndicateurMoyenne("manip1_carte"+numeroCarte+"/apres/NoteQCM_Normalisee",listeAp);
+            indicateurEcart("Ecart_NoteQCMNormaliseeCarte"+numeroCarte, "manip1_carte"+numeroCarte+"/apres/NoteQCM_Normalisee", "manip1_carte"+numeroCarte+"/avant/NoteQCM_Normalisee");
             //on passe à la carte suivante
             numeroCarte++;
         }
@@ -308,7 +309,7 @@ public class IndicateursImpl implements Indicateurs{
         // parcours les deux listes de valeurs des indicateurs à soustraire
         for(int i=0;i<tr.get("Nom").size();i++){
             //s’il n’y a pas une valeur nulle dans l’un des deux indicateurs (après,avant) il fait la soustraction
-            if(!tr.get(apres).get(i).equals("")&&!tr.get(avant).get(i).equals("")) 
+            if(!tr.get(apres).get(i).equals("")&& !tr.get(avant).get(i).equals("")) 
                 //et l'ajoute à la liste de valeurs
                 tr.get(nom).add(String.valueOf(Double.parseDouble(tr.get(apres).get(i))-Double.parseDouble(tr.get(avant).get(i))));
             //sinon il met une chaine vide
@@ -619,4 +620,78 @@ public class IndicateursImpl implements Indicateurs{
         creerIndicateurMoyenne("Moyenne_ComportementRA",listeComportementRA );
         
     }
-}  
+    
+    /**
+     * crée l'indicateur de performance d'apprentissage
+     */
+    public void perfApprentissage(){
+       //performance d'apprentissage =  Ecart entre la moyenne des Notes QCM normalisée apres et la moyenne des notes QCM normalisée avant
+        indicateurEcart("perfApprentissage1","manip1_MoyenneQCM_Apres_Normalisee", "manip1_MoyenneQCM_Avant_Normalisee");
+            
+    }
+    /**
+     * crée les moyennes des indicateurs de buts d'accomplissement de soi
+     * (de maitrise, de performance approche, de performance evitement)
+     */
+    public void butMaitrisePerformance(){
+        List<String> listeBM = new ArrayList<>();
+        List<String> listeBPE = new ArrayList<>();
+        List<String> listeBPA = new ArrayList<>();
+        
+        //but de maitrise
+        listeBM.add("manip1_motivation/Reponse_q0");
+        listeBM.add("manip1_motivation/Reponse_q1");
+        listeBM.add("manip1_motivation/Reponse_q7");
+        
+        //but de performance approche
+        listeBPA.add("manip1_motivation/Reponse_q4");
+        listeBPA.add("manip1_motivation/Reponse_q5");
+        listeBPA.add("manip1_motivation/Reponse_q6");
+        
+        //but de performance evitement
+        listeBPE.add("manip1_motivation/Reponse_q2");
+        listeBPE.add("manip1_motivation/Reponse_q3");
+        listeBPE.add("manip1_motivation/Reponse_q8");
+        
+        creerIndicateurMoyenne("Moyenne_BPA", listeBPA);
+        creerIndicateurMoyenne("Moyenne_BPE", listeBPE);
+        creerIndicateurMoyenne("Moyenne_BM", listeBM);
+    }
+    
+    /**
+     * crée les moyennes des indicateurs motivationnel
+     * (Besoin d'autonomie, beneficeAide, Image privée image publique)
+     */
+    public void variableMotivationnelle(){
+        List<String> listeBesoin = new ArrayList<>();
+        List<String> listeBenefice = new ArrayList<>();
+        List<String> listeIprivee = new ArrayList<>();
+        List<String> listeIpublique = new ArrayList<>();
+        
+        //besoin d'autonomie
+        listeBesoin.add("manip1_perception_aides/Reponse_q0");
+        listeBesoin.add("manip1_perception_aides/Reponse_q4");
+        listeBesoin.add("manip1_perception_aides/Reponse_q7");
+        
+        //bénéfice de l'aide
+        listeBenefice.add("manip1_perception_aides/Reponse_q1");
+        listeBenefice.add("manip1_perception_aides/Reponse_q3");
+        listeBenefice.add("manip1_perception_aides/Reponse_q5");
+        
+        //Image privée
+        listeIprivee.add("manip1_perception_aides/Reponse_q2");
+        listeIprivee.add("manip1_perception_aides/Reponse_q6");
+        
+        //ImagePublique
+        listeIpublique.add("manip1_perception_aides/Reponse_q8");
+        listeIpublique.add("manip1_perception_aides/Reponse_q9");
+        
+        creerIndicateurMoyenne("Moyenne_besoinAutonomie", listeBesoin);
+        creerIndicateurMoyenne("Moyenne_beneficeAide", listeBenefice);
+        creerIndicateurMoyenne("Moyenne_imagePrivée", listeIprivee);
+        creerIndicateurMoyenne("Moyenne_imagePublique", listeIpublique);
+        
+        
+    }
+}
+    
