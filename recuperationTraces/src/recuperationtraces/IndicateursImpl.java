@@ -473,7 +473,8 @@ public class IndicateursImpl implements Indicateurs {
      */
     public void nbUtilisationAide(){
         //listes qui contiendront les indicateurs necessaires aux calculs de moyenne
-        List<String> listeAideInstru = new ArrayList<>(); 
+        List<String> listeAideInstru1 = new ArrayList<>(); 
+        List<String> listeAideInstru2 = new ArrayList<>(); 
         List<String> listeAideExe = new ArrayList<>();    
         List<String> listeEvitement1 = new ArrayList<>();
         List<String> listeEvitement2 = new ArrayList<>();
@@ -487,10 +488,10 @@ public class IndicateursImpl implements Indicateurs {
             for (String key : tr.keySet()) {
                 //si on trouve l'indicateur nbUtilisationAide1
                 if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationAide1")){
-                    listeAideInstru.add(key);//on l'ajoute à la liste
+                    listeAideInstru1.add(key);//on l'ajoute à la liste
                 //si on trouve l'indicateur nbUtilisationAide2
                 } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationAide2")){
-                    listeAideInstru.add(key);//on l'ajoute à la liste
+                    listeAideInstru2.add(key);//on l'ajoute à la liste
                 //si on trouve l'indicateur nbUtilisationAide3
                 } else if (key.equals("manip1_carte"+numeroCarte+"/nbUtilisationAide3")){
                     listeAideExe.add(key);//on l'ajoute à la liste
@@ -507,12 +508,119 @@ public class IndicateursImpl implements Indicateurs {
         }
         
         //on calcule les moyennes puis on les ajoute à la HashMap
-        creerIndicateurMoyenne("Moyenne_NbUtilisationsAideInstru", listeAideInstru);
+        creerIndicateurMoyenne("Moyenne_NbUtilisationsAide1", listeAideInstru1);
+        creerIndicateurMoyenne("Moyenne_NbUtilisationsAide2", listeAideInstru2);
         creerIndicateurMoyenne("Moyenne_NbUtilisationsAideExe", listeAideExe);
         creerIndicateurMoyenne("Moyenne_NbUtilisationsEvitement1", listeEvitement1);
         creerIndicateurMoyenne("Moyenne_NbUtilisationsEvitement2", listeEvitement2);
-     
+        
+        //on calcule la moyenne du nombre d'utilisation des aides instrumentale (1+2)
+        // = somme des moyennes des aides 1 et 2 
+        //et on l'ajoute à la hashMap
+        List<String> listeAideInstru = new ArrayList<>();
+        listeAideInstru.add("Moyenne_NbUtilisationsAide1");
+        listeAideInstru.add("Moyenne_NbUtilisationsAide2");
+        creerIndicateurSomme("Moyenne_NbUtilisationsAideInstru", listeAideInstru);
+        
+        // pareil pour les évitements
+        // = somme des moyenne des evitements 1 et 2
+        List<String> listeAideEvitement = new ArrayList<>();
+        listeAideInstru.add("Moyenne_NbUtilisationsEvitement1");
+        listeAideInstru.add("Moyenne_NbUtilisationsEvitement2");
+        creerIndicateurSomme("Moyenne_NbUtilisationsEvitement", listeAideEvitement);
     }
-    
+    /**
+     * Calcul des moyennes Bc (A1,A2,B,C)
+     * Calcul des moyennes comportement RA par carte
+     * puis de la moyenne globale de comportement RA
+     */
+    public void comportementsRA(){
+        int numeroCarte=0;
+        
+        //listes qui contiendront les indicateurs necessaires aux calculs de moyenne Bc(A1,A2,B,C) Avant et Apres
+        List<String> listeBcA1Av = new ArrayList<>();
+        List<String> listeBcA2Av = new ArrayList<>();
+        List<String> listeBcBAv = new ArrayList<>();
+        List<String> listeBcCAv = new ArrayList<>();
+        
+        List<String> listeBcA1Ap = new ArrayList<>();
+        List<String> listeBcA2Ap = new ArrayList<>();
+        List<String> listeBcBAp = new ArrayList<>();
+        List<String> listeBcCAp = new ArrayList<>();
+        
+        
+        //tant qu'il existe des cartes
+        while(tr.containsKey("manip1_carte"+numeroCarte+"/BcA1Avant")) {
+            
+            //liste qui contiendra les indicateurs pour la moyenne Bc par carte
+            List<String> listeRAAv = new ArrayList<>();
+            List<String> listeRAAp = new ArrayList<>();
+             
+            //parcours de toutes les clés
+            for (String key : tr.keySet()) {
+               
+                if (key.equals("manip1_carte"+numeroCarte+"/BcA1Avant")){
+                    listeBcA1Av.add(key);//on l'ajoute à la liste
+                    listeRAAv.add(key);
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcA2Avant")){
+                    listeBcA2Av.add(key);//on l'ajoute à la liste
+                    listeRAAv.add(key);
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcBAvant")){
+                    listeBcBAv.add(key);//on l'ajoute à la liste
+                    listeRAAv.add(key);
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcCAvant")){
+                    listeBcCAv.add(key);//on l'ajoute à la liste
+                    listeRAAv.add(key);
+                
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcA1Apres")){
+                    listeBcA1Ap.add(key);//on l'ajoute à la liste
+                    listeRAAp.add(key);
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcA2Apres")){
+                    listeBcA2Ap.add(key);//on l'ajoute à la liste
+                    listeRAAp.add(key);
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcBApres")){
+                    listeBcBAp.add(key);//on l'ajoute à la liste
+                    listeRAAp.add(key);
+                } else if (key.equals("manip1_carte"+numeroCarte+"/BcCApres")){
+                    listeBcCAp.add(key);//on l'ajoute à la liste
+                    listeRAAp.add(key);
+                
+                } 
+            }
+            creerIndicateurMoyenne("Moyenne_RACarte"+numeroCarte+"Apres", listeRAAp);//moyenne RA par carte apres
+            creerIndicateurMoyenne("Moyenne_RACarte"+numeroCarte+"Avant", listeRAAv);//moyenne RA par carte avant
+            indicateurEcart("Moyenne_RACarte"+numeroCarte, "Moyenne_RACarte"+numeroCarte+"Apres", "Moyenne_RACarte"+numeroCarte+"Avant");
+            
+            //on passe à la carte suivante
+            numeroCarte++;
+        }
+        //moyenne aprés
+        creerIndicateurMoyenne("Moyenne_BcA1Apres", listeBcA1Ap);
+        creerIndicateurMoyenne("Moyenne_BcA2Apres", listeBcA2Ap);
+        creerIndicateurMoyenne("Moyenne_BcBApres", listeBcBAp);
+        creerIndicateurMoyenne("Moyenne_BcCApres", listeBcCAp);
+        
+        //moyenne avant
+        creerIndicateurMoyenne("Moyenne_BcA1Avant", listeBcA1Av);
+        creerIndicateurMoyenne("Moyenne_BcA2Avant", listeBcA2Av);
+        creerIndicateurMoyenne("Moyenne_BcBAvant", listeBcBAv);
+        creerIndicateurMoyenne("Moyenne_BcCAvant", listeBcCAv);
+        
+        //aprés - avant
+        indicateurEcart("Moyenne_BcA1", "Moyenne_BcA1Apres", "Moyenne_BcA1Avant");
+        indicateurEcart("Moyenne_BcA2", "Moyenne_BcA2Apres", "Moyenne_BcA2Avant");
+        indicateurEcart("Moyenne_BcB", "Moyenne_BcBApres", "Moyenne_BcBAvant");
+        indicateurEcart("Moyenne_BcC", "Moyenne_BcCApres", "Moyenne_BcCAvant");
+        
+        //calcul de la moyenne de comportement RA 
+        List<String> listeComportementRA = new ArrayList<>();
+        
+        listeComportementRA.add("Moyenne_BcA1");
+        listeComportementRA.add("Moyenne_BcA2");
+        listeComportementRA.add("Moyenne_BcB");
+        listeComportementRA.add("Moyenne_BcC");
+        creerIndicateurMoyenne("Moyenne_ComportementRA",listeComportementRA );
+        
+    }
 }
     

@@ -47,6 +47,9 @@ public class Racine {
         tracesEtIndicateursCalcules.classerUsers();
         tracesEtIndicateursCalcules.moyenneVariableAutoEvaluation();
         tracesEtIndicateursCalcules.nbUtilisationAide();
+        System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
+        tracesEtIndicateursCalcules.comportementsRA();
+        System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
         tracesEtIndicateursCalcules.afficher();
     }
     
