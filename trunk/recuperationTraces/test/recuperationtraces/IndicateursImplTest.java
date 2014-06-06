@@ -163,33 +163,6 @@ public class IndicateursImplTest {
     }
 
     /**
-     * Test of getTr method, of class IndicateursImpl.
-     */
-    @Test
-    public void testGetTr() {
-        System.out.println("getTr");
-        IndicateursImpl instance = null;
-        HashMap<String, List<String>> expResult = null;
-        HashMap<String, List<String>> result = instance.getTr();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTr method, of class IndicateursImpl.
-     */
-    @Test
-    public void testSetTr() {
-        System.out.println("setTr");
-        HashMap<String, List<String>> tr = null;
-        IndicateursImpl instance = null;
-        instance.setTr(tr);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of creerMatrice method, of class IndicateursImpl.
      */
     @Test
@@ -223,7 +196,7 @@ public class IndicateursImplTest {
     @Test
     public void testSauver() {
         System.out.println("sauver");
-        File monFichier = new File("test");
+        File monFichier = new File("src/test.dat");
         IndicateursImpl instance = new IndicateursImpl();
         List<String> lst=new ArrayList<>();
         lst.add("1");
