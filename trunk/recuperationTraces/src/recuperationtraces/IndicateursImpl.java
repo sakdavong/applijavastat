@@ -72,12 +72,42 @@ public class IndicateursImpl implements Indicateurs{
         IndicateursImpl indImpl=new IndicateursImpl(r);
         switch (condition) {
             case "<":
+                for(int i=0;i<tr.get(nomIndicateur).size();i++){
+                    if(Double.parseDouble(ValeurContrainte)<=Double.parseDouble(tr.get(nomIndicateur).get(i))){
+                        indImpl.supprimerParticipants(i);
+                    }
+                }
                 break;
             case ">":
+                for(int i=0;i<tr.get(nomIndicateur).size();i++){
+                    if(Double.parseDouble(ValeurContrainte)>=Double.parseDouble(tr.get(nomIndicateur).get(i))){
+                        indImpl.supprimerParticipants(i);
+                    }
+                }
+                break;
+            case "<=":
+                for(int i=0;i<tr.get(nomIndicateur).size();i++){
+                    if(Double.parseDouble(ValeurContrainte)<Double.parseDouble(tr.get(nomIndicateur).get(i))){
+                        indImpl.supprimerParticipants(i);
+                    }
+                }
+                break;
+            case ">=":
+                for(int i=0;i<tr.get(nomIndicateur).size();i++){
+                    if(Double.parseDouble(ValeurContrainte)>Double.parseDouble(tr.get(nomIndicateur).get(i))){
+                        indImpl.supprimerParticipants(i);
+                    }
+                }
                 break;
             case "=":
                 for(int i=0;i<tr.get(nomIndicateur).size();i++){
                     if(!tr.get(nomIndicateur).get(i).equals(ValeurContrainte)){
+                        indImpl.supprimerParticipants(i);
+                    }
+                }
+            case "#":
+                for(int i=0;i<tr.get(nomIndicateur).size();i++){
+                    if(tr.get(nomIndicateur).get(i).equals(ValeurContrainte)){
                         indImpl.supprimerParticipants(i);
                     }
                 }
