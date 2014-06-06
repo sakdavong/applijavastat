@@ -200,11 +200,14 @@ public class IndicateursImplTest {
     @Test
     public void testSauver() {
         System.out.println("sauver");
-        File monFichier = null;
-        IndicateursImpl instance = null;
+        File monFichier = new File("test");
+        IndicateursImpl instance = new IndicateursImpl();
+        List<String> lst=new ArrayList<>();
+        lst.add("1");
+        instance.getTr().put("Nom",lst);
         instance.sauver(monFichier);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       
     }
 
     /**

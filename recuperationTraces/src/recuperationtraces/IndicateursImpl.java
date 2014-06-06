@@ -68,8 +68,23 @@ public class IndicateursImpl implements Indicateurs{
     }
 
     @Override
-    public Indicateurs creerVueValeurs(String nomIndicateur, String ValeurContrainte, String condition) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Indicateurs creerVueValeurs(String nomIndicateur, String ValeurContrainte, String condition){
+        IndicateursImpl indImpl=new IndicateursImpl(r);
+        switch (condition) {
+            case "<":
+                break;
+            case ">":
+                break;
+            case "=":
+                for(int i=0;i<tr.get(nomIndicateur).size();i++){
+                    if(!tr.get(nomIndicateur).get(i).equals(ValeurContrainte)){
+                        indImpl.supprimerParticipants(i);
+                    }
+                }
+                break;
+                
+        }
+        return null;
     }
 
    // Affichage
