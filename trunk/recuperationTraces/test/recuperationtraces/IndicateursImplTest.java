@@ -231,7 +231,32 @@ public class IndicateursImplTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+    @Test
+    public void testCreerIndicateurMoyenne(){
+        System.out.println("creerIndicateurMoyenne");
+        
+        List<String> listeInd,lst1,lst2,lst3,lst;
+        listeInd = new ArrayList<>();
+        lst=new ArrayList<>();
+        lst1=new ArrayList<>();
+        lst2=new ArrayList<>();
+        lst3=new ArrayList<>();
+        String nom = "moyenne";
+        lst.add("ut1");lst.add("ut2");lst.add("ut3");
+        lst1.add("2");lst2.add("2");lst3.add("");
+        lst1.add("4");lst2.add("2");lst3.add("1");
+        lst1.add("1");lst2.add("2");lst3.add("5");
+        listeInd.add("ind1");listeInd.add("ind2");listeInd.add("ind3");
+        IndicateursImpl instance = new IndicateursImpl();
+        instance.getTr().put("ind1", lst1);
+        instance.getTr().put("ind2", lst2);
+        instance.getTr().put("ind3", lst3);
+        instance.getTr().put("Nom", lst);
+        instance.creerIndicateurMoyenne(nom, listeInd);
+        // TODO review the generated test code and remove the default call to fail.
+        instance.afficher();
+        
+    }
     /**
      * Test of indicateurEcart method, of class IndicateursImpl.
      */
@@ -316,17 +341,22 @@ public class IndicateursImplTest {
     @Test
     public void testCalculerMediane() {
         System.out.println("calculerMediane");
-        List<String> liste = new ArrayList<>();
+        List<String> liste1 = new ArrayList<>();
+        List<String> liste2 = new ArrayList<>();
         IndicateursImpl instance = new IndicateursImpl();
-        liste.add("-1");
-        liste.add("0");
-        liste.add("2");
-        liste.add("5");
-        double expResult = 1;
-        double result = instance.calculerMediane(liste);
-        assertEquals(expResult, result,0.0);
+        liste1.add("-1");liste2.add("-1");
+        liste1.add("0");liste2.add("0");
+        liste1.add("2");liste2.add("2");
+        liste1.add("5");liste2.add("5");
+        liste1.add("-2");
+        double expResult1 = 0,expResult2 = 1;
+        double result1 = instance.calculerMediane(liste1);
+        double result2 = instance.calculerMediane(liste2);
+        assertEquals(expResult1, result1,0.0);
+        assertEquals(expResult2, result2,0.0);
         // TODO review the generated test code and remove the default call to fail.
-        System.out.println("resultat attendu: "+expResult+"/ resultat du teste: "+result);
+        System.out.println("resultat attendu: "+expResult1+"/ resultat du teste: "+result1);
+        System.out.println("resultat attendu: "+expResult2+"/ resultat du teste: "+result2);
     }
 
     /**
