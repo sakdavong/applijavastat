@@ -79,10 +79,15 @@ public class IndicateursImplTest {
         List<String> test = new ArrayList<>();
 
         IndicateursImpl instance = new IndicateursImpl();
+        
         instance.getTr().put("Nom", Nom);
         instance.getTr().put("test", test);
+        instance.getTr().put("test2", test);
+        instance.getTr().put("test3", test);
         
-        IndicateursImpl expResult = instance;
+        IndicateursImpl expResult = new IndicateursImpl();
+        expResult.getTr().put("Nom", Nom);
+        expResult.getTr().put("test", test);
         
         IndicateursImpl result =(IndicateursImpl) instance.creerVueIndicateurs(ARechercher);
         assertEquals(expResult.getTr(), result.getTr());
