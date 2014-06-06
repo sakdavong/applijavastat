@@ -37,7 +37,7 @@ public class IndicateursImpl implements Indicateurs{
      * ce constructeur utilise les données directement renvoyé du serveur
      * @param r la racine de l'application
      */
-    public IndicateursImpl(Racine r) {
+    public IndicateursImpl (Racine r) {
         this.r=r;
         tr = new HashMap();
     }
@@ -135,8 +135,8 @@ public class IndicateursImpl implements Indicateurs{
     
     @Override
     public void supprimerParticipants(int indice) {
-        for(String key:tr.keySet()){
-            tr.get(key).remove(indice);
+        for(String key: tr.keySet()){
+            (tr.get(key)).remove(indice);
         }
     }
     public void supprimerParticipants(String nom) {
