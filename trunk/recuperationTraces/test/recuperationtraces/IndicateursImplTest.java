@@ -71,13 +71,22 @@ public class IndicateursImplTest {
     @Test
     public void testCreerVueIndicateurs() {
         System.out.println("creerVueIndicateurs");
-        List<String> ARechercher = null;
-        IndicateursImpl instance = null;
-        Indicateurs expResult = null;
-        Indicateurs result = instance.creerVueIndicateurs(ARechercher);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        List<String> ARechercher = new ArrayList<>();
+        ARechercher.add("Nom");
+        ARechercher.add("test");
+        List<String> Nom = new ArrayList<>();
+        List<String> test = new ArrayList<>();
+
+        IndicateursImpl instance = new IndicateursImpl();
+        instance.getTr().put("Nom", Nom);
+        instance.getTr().put("test", test);
+        
+        IndicateursImpl expResult = instance;
+        
+        IndicateursImpl result =(IndicateursImpl) instance.creerVueIndicateurs(ARechercher);
+        assertEquals(expResult.getTr(), result.getTr());
+        
     }
 
     /**
