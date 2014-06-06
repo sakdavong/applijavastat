@@ -169,9 +169,7 @@ public class IndicateursImpl implements Indicateurs{
         }
     }
     public void supprimerParticipants(String nom) {
-        for(String key:tr.keySet()){
-            tr.get(key).remove(nom);
-        }
+        supprimerParticipants(tr.get("Nom").indexOf(nom));
     }
 
     @Override
