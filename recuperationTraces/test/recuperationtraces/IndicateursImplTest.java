@@ -168,12 +168,43 @@ public class IndicateursImplTest {
      */
     @Test
     public void testSupprimerParticipants_String() {
-        System.out.println("supprimerParticipants");
-        String nom = "";
-        IndicateursImpl instance = null;
-        instance.supprimerParticipants(nom);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println("supprimerParticipants => ");
+        int indice = 2;
+        IndicateursImpl instance = new IndicateursImpl();
+        List<String> listeNomAvant = new ArrayList<>();
+        List<String> listeNomApres = new ArrayList<>();
+        List<String> listeAvant = new ArrayList<>();
+        List<String> listeAvant2 = new ArrayList<>();
+        List<String> listeAvant3 = new ArrayList<>();
+        
+        List<String> listeApres = new ArrayList<>();
+        
+        listeNomAvant.add("ut1");listeNomAvant.add("ut2");listeNomAvant.add("ut3");listeNomAvant.add("ut4");listeNomAvant.add("ut5");
+        listeAvant.add("1");listeAvant.add("2");listeAvant.add("3");listeAvant.add("4");listeAvant.add("5");
+        listeAvant2.add("1");listeAvant2.add("2");listeAvant2.add("3");listeAvant2.add("4");listeAvant2.add("5");
+        listeAvant3.add("1");listeAvant3.add("2");listeAvant3.add("3");listeAvant3.add("4");listeAvant3.add("5");
+        
+        listeApres.add("1");listeApres.add("3");listeApres.add("4");listeApres.add("5");
+        listeNomApres.add("ut1");listeNomApres.add("ut3");listeNomApres.add("ut4");listeNomApres.add("ut5");
+        instance.getTr().put("Nom", listeNomAvant);
+        instance.getTr().put("element", listeAvant);
+        instance.getTr().put("element2", listeAvant2);
+        instance.getTr().put("element3", listeAvant3);
+        instance.supprimerParticipants("ut2");
+
+        boolean resultat=true;
+        if (!instance.getTr().get("Nom").equals(listeNomApres)){
+                resultat=false;
+            }
+        for(String key:instance.getTr().keySet()){
+            if (key.equals("Nom")){
+            }
+            else if (!instance.getTr().get(key).equals(listeApres)){
+                resultat=false;
+            }
+        }
+        System.out.println(resultat);
+        assertEquals(true, resultat);
     }
 
     /**
