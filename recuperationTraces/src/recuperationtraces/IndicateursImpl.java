@@ -134,7 +134,6 @@ public class IndicateursImpl implements Indicateurs{
     		{
     			Object key= iterateur.next();
     			System.out.println (key+"=>"+tr.get(key));
-                        System.out.println (tr.get(key).size());
                         tab[i][0]=(String) key;
                         for(int j=1;j<tr.get(key).size()+1;j++)
                         tab[i][j]=tr.get(key).get(j-1);
@@ -325,9 +324,13 @@ public class IndicateursImpl implements Indicateurs{
             //parcours de la liste de valeurs 
             for(int i=0;i<tr.get(ind).size();i++){
                 //si la valeur n'est pas vide
-                if(!tr.get(ind).get(i).equals(""))
+                if(!tr.get(ind).get(i).equals("")){
+                    if(somme[i]!=-1)
                     //on l'ajoute au tableau des sommes
                     somme[i]+=Double.parseDouble(tr.get(ind).get(i));
+                }else {
+                    somme[i]=-1;
+                }
             }
         }
         
@@ -335,7 +338,10 @@ public class IndicateursImpl implements Indicateurs{
         tr.put(nom, new ArrayList<String>());
         //on ajoute dans cette liste les valeurs des moyennes
         for(int i=0;i<tr.get("Nom").size();i++){
-            tr.get(nom).add(String.valueOf(somme[i]/listeInd.size()));
+            if(somme[i]!=-1)
+                tr.get(nom).add(String.valueOf(somme[i]/listeInd.size()));
+            else
+                tr.get(nom).add("");
         }
     }
     
