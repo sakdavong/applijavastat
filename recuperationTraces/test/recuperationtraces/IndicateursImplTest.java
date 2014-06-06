@@ -7,6 +7,7 @@
 package recuperationtraces;
 
 import java.io.File;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -118,12 +119,34 @@ public class IndicateursImplTest {
      */
     @Test
     public void testSupprimerParticipants_int() {
-        System.out.println("supprimerParticipants");
-        int indice = 0;
-        IndicateursImpl instance = null;
+        System.out.print("supprimerParticipants => ");
+        int indice = 2;
+        IndicateursImpl instance = new IndicateursImpl();
+        List<String> listeAvant = new ArrayList<>();
+        List<String> listeAvant2 = new ArrayList<>();
+        List<String> listeAvant3 = new ArrayList<>();
+        
+        List<String> listeApres = new ArrayList<>();
+ 
+        listeAvant.add("1");listeAvant.add("2");listeAvant.add("3");listeAvant.add("4");listeAvant.add("5");
+        listeAvant2.add("1");listeAvant2.add("2");listeAvant2.add("3");listeAvant2.add("4");listeAvant2.add("5");
+        listeAvant3.add("1");listeAvant3.add("2");listeAvant3.add("3");listeAvant3.add("4");listeAvant3.add("5");
+        
+        listeApres.add("1");listeApres.add("2");listeApres.add("4");listeApres.add("5");
+
+        instance.getTr().put("element", listeAvant);
+        instance.getTr().put("element2", listeAvant2);
+        instance.getTr().put("element3", listeAvant3);
+
         instance.supprimerParticipants(indice);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean resultat=true;
+        for(String key:instance.getTr().keySet()){
+            if (!instance.getTr().get(key).equals(listeApres)){
+                resultat=false;
+            }
+        }
+        System.out.println(resultat);
+        assertEquals(true, resultat);
     }
 
     /**
