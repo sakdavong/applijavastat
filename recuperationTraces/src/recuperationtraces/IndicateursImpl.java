@@ -271,7 +271,7 @@ public class IndicateursImpl implements Indicateurs{
      * @param nom le nom du nouvel indicateur
      * @param listeInd la liste des indicateurs dont on veut faire la moyenne
      */
-    private void creerIndicateurMoyenne(String nom, List<String> listeInd){
+    public void creerIndicateurMoyenne(String nom, List<String> listeInd){
         // tableau qui contiendra les sommes des indicateurs
         double[] somme = new double[tr.get("Nom").size()];
         
