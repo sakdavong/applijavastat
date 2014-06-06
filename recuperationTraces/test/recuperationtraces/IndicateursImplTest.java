@@ -194,30 +194,25 @@ public class IndicateursImplTest {
      * Test of sauver method, of class IndicateursImpl.
      */
     @Test
-    public void testSauver() {
-        System.out.println("sauver");
+    public void testSauverCharger() {
+        System.out.print("sauver => ");
         File monFichier = new File("src/test.dat");
+        
         IndicateursImpl instance = new IndicateursImpl();
-        List<String> lst=new ArrayList<>();
-        lst.add("1");
-        instance.getTr().put("Nom",lst);
+        IndicateursImpl instanceCharge = new IndicateursImpl();
+        
+        List<String> liste = new ArrayList<>();
+        liste.add("coucou");liste.add("je");liste.add("suis");liste.add("Matthieu");
+        instance.getTr().put("cles", liste);
+        
         instance.sauver(monFichier);
+        instanceCharge.charger(monFichier);
+        assertEquals(instance.getTr().get("cles"),instanceCharge.getTr().get("cles"));
+        
         // TODO review the generated test code and remove the default call to fail.
        
     }
 
-    /**
-     * Test of charger method, of class IndicateursImpl.
-     */
-    @Test
-    public void testCharger() {
-        System.out.println("charger");
-        File monFichier = null;
-        IndicateursImpl instance = null;
-        instance.charger(monFichier);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of calculerMoyenneNoteNormalisee method, of class IndicateursImpl.
