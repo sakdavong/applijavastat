@@ -246,8 +246,8 @@ public class IndicateursImplTest {
         lst3=new ArrayList<>();
         String nom = "moyenne";
         lst.add("ut1");lst.add("ut2");lst.add("ut3");
-        lst1.add("2");lst2.add("2");lst3.add("");
-        lst1.add("4");lst2.add("2");lst3.add("1");
+        lst1.add("2");lst2.add("");lst3.add("2");
+        lst1.add("");lst2.add("2");lst3.add("1");
         lst1.add("1");lst2.add("2");lst3.add("5");
         listeInd.add("ind1");listeInd.add("ind2");listeInd.add("ind3");
         IndicateursImpl instance = new IndicateursImpl();
