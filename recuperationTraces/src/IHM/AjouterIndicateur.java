@@ -8,6 +8,7 @@ package IHM;
 
 import java.awt.Component;
 import java.awt.PopupMenu;
+import javax.swing.DefaultListModel;
 import recuperationtraces.*;
 
 /**
@@ -24,6 +25,8 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         initComponents();
         this.r=r;
         JListIndicateurs.setModel(r.getTracesEtIndicateursCalcules());
+        DefaultListModel dLM= new DefaultListModel();
+        JListIndicateurUtilise.setModel(dLM);
         
     }
 
@@ -56,6 +59,11 @@ public class AjouterIndicateur extends javax.swing.JPanel {
 
         jTextField3.setText("jTextField3");
 
+        JListIndicateurUtilise.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "t" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
         jScrollPane2.setViewportView(JListIndicateurUtilise);
 
         jScrollPane1.setViewportView(JListIndicateurs);
@@ -93,7 +101,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,8 +154,9 @@ public class AjouterIndicateur extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JListIndicateurUtilise.add((Component) JListIndicateurs.getSelectedValue()));
         
+        DefaultListModel dLM=(DefaultListModel) JListIndicateurUtilise.getModel();
+        dLM.addElement(JListIndicateurs.getSelectedValue());
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
