@@ -61,6 +61,12 @@ public class EcranAccueil extends javax.swing.JFrame {
                 setSize(1024,768);
                 setVisible(true);
                 setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                AjouterIndicateur aI=new AjouterIndicateur(r);
+                JFrame jf=new JFrame();
+                jf.setContentPane(aI);
+                jf.setVisible(true);
+                jf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    
     }
 
     /**

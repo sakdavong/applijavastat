@@ -21,13 +21,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractListModel;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import javax.swing.event.ListDataListener;
 
 
-public class IndicateursImpl implements Indicateurs{
+public class IndicateursImpl extends AbstractListModel implements Indicateurs{
     
     private HashMap<String, List<String>> tr;
     
@@ -434,9 +437,11 @@ public class IndicateursImpl implements Indicateurs{
        
        
        for (String t : liste) {
-           if (Double.parseDouble(t)<mediane){
+           if (t.equals(""))
+               listeClassement.add("");
+           else if(Double.parseDouble(t)<mediane){
                listeClassement.add("faible");
-           }else {
+           }else{
                listeClassement.add("fort");
            }
         }
@@ -455,6 +460,7 @@ public class IndicateursImpl implements Indicateurs{
         
         //rempli la liste de double avec les valeur contenu dans la liste de String
         for (String t : liste) {
+            if(!t.equals(""))
             listeConverti.add(Double.parseDouble(t));
         }
         
@@ -742,5 +748,17 @@ public class IndicateursImpl implements Indicateurs{
         
         
     }
+
+    @Override
+    public int getSize() {
+        return this.tr.size();
+    }
+
+    @Override
+    public Object getElementAt(int index) {
+        return tr.keySet().toArray()[index];
+    }
+
+    
 }
     

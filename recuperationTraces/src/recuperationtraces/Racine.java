@@ -72,6 +72,11 @@ public class Racine {
     public IndicateursImpl getTraces() {
         return traces;
     }
+
+    public IndicateursImpl getTracesEtIndicateursCalcules() {
+        return tracesEtIndicateursCalcules;
+    }
+    
     
 }
     
