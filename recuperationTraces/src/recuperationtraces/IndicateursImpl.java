@@ -58,7 +58,7 @@ public class IndicateursImpl extends DefaultListModel implements Indicateurs{
        }
     
     @Override
-    public Indicateurs creerVueIndicateurs(List<String> ARechercher) {
+    public IndicateursImpl creerVueIndicateurs(List<String> ARechercher) {
         //nouvel indicateurImpl qui contiendra la vue
         IndicateursImpl indImpl=new IndicateursImpl(r);
         for(String s:ARechercher){
