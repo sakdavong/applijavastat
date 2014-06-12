@@ -22,16 +22,13 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractListModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ListModel;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-import javax.swing.event.ListDataListener;
 
 
-public class IndicateursImpl extends DefaultListModel implements Indicateurs{
+public class IndicateursImpl extends AbstractListModel implements Indicateurs{
     
     private HashMap<String, List<String>> tr;
     
@@ -44,6 +41,8 @@ public class IndicateursImpl extends DefaultListModel implements Indicateurs{
     public IndicateursImpl (Racine r) {
         this.r=r;
         tr = new HashMap();
+        
+        
     }
     
     /**

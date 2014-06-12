@@ -27,9 +27,15 @@ public class AjouterIndicateur extends javax.swing.JPanel {
     public AjouterIndicateur(Racine r) {
         initComponents();
         this.r=r;
-        JListIndicateurs.setModel(r.getTracesEtIndicateursCalcules());
-        DefaultListModel dLM= new DefaultListModel();
-        JListIndicateurUtilise.setModel(dLM);
+        DefaultListModel dlm1= new DefaultListModel();
+        JListAllIndicateurs.setModel(dlm1);
+        List<String> lst=new ArrayList<>();
+        for (String key : r.getTracesEtIndicateursCalcules().getTr().keySet()){
+            lst.add(key);
+            dlm1.addElement(key);
+        }
+        DefaultListModel dlm2= new DefaultListModel();
+        JListIndicateurUtilise.setModel(dlm2);
         
     }
 
@@ -47,16 +53,16 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         JListIndicateurUtilise = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
-        JListIndicateurs = new javax.swing.JList();
+        JListAllIndicateurs = new javax.swing.JList();
         textRecherche = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        TxtNomNewIndicateur = new javax.swing.JTextField();
+        CalculSomme = new javax.swing.JButton();
+        CalculMoyenne = new javax.swing.JButton();
+        CalculMEcart = new javax.swing.JButton();
+        nomIndicateur = new javax.swing.JLabel();
+        Recherche = new javax.swing.JButton();
 
         jButton4.setText("jButton4");
 
@@ -64,7 +70,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(JListIndicateurUtilise);
 
-        jScrollPane1.setViewportView(JListIndicateurs);
+        jScrollPane1.setViewportView(JListAllIndicateurs);
 
         jButton1.setText(">");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,18 +86,18 @@ public class AjouterIndicateur extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("Sommme");
+        CalculSomme.setText("Sommme");
 
-        jButton5.setText("Moyenne");
+        CalculMoyenne.setText("Moyenne");
 
-        jButton6.setText("Ecart");
+        CalculMEcart.setText("Ecart");
 
-        jLabel2.setText("Nom de Lindicateur   :");
+        nomIndicateur.setText("Nom de Lindicateur   :");
 
-        jButton7.setText("Recherche");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        Recherche.setText("Recherche");
+        Recherche.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                RechercheActionPerformed(evt);
             }
         });
 
@@ -111,19 +117,19 @@ public class AjouterIndicateur extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
+                        .addComponent(CalculMoyenne)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton3)
+                        .addComponent(CalculSomme)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CalculMEcart, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton7)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Recherche)
+                            .addComponent(nomIndicateur, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(textRecherche)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(TxtNomNewIndicateur, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,16 +150,16 @@ public class AjouterIndicateur extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(Recherche))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(TxtNomNewIndicateur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nomIndicateur))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jButton3)
-                    .addComponent(jButton6))
+                    .addComponent(CalculMoyenne)
+                    .addComponent(CalculSomme)
+                    .addComponent(CalculMEcart))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -161,27 +167,31 @@ public class AjouterIndicateur extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         DefaultListModel dLM=(DefaultListModel) JListIndicateurUtilise.getModel();
-        dLM.addElement(JListIndicateurs.getSelectedValue());
-        DefaultListModel dLM2=(DefaultListModel) JListIndicateurs.getModel();
-        dLM2.removeElement(JListIndicateurs.getSelectedValue());
+        //dLM.addElement(JListAllIndicateurs.getSelectedValue());
+        DefaultListModel dLM2=(DefaultListModel) JListAllIndicateurs.getModel();
+        
+    //    dLM2.removeElementAt(JListAllIndicateurs.getSelectedIndex());
+    //    JListAllIndicateurs.invalidate();
+        
+        dLM2.removeElement(JListAllIndicateurs.getSelectedValue());
         validate();
          
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void RechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechercheActionPerformed
         
         String s= textRecherche.getText();
-        List<String> l=(List<String>) r.getTracesEtIndicateursCalcules().getTr().keySet();
+        String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
         List<String> l2=new ArrayList<>();
-        for(int i=0;i<l.size();i++)
-            if(l.get(i).contains(s))
-                l2.add(l.get(i));
+        for(String ss:l)
+            if(ss.contains(s))
+                l2.add(ss);
         IndicateursImpl ind=r.getTracesEtIndicateursCalcules().creerVueIndicateurs(l2);
-        JListIndicateurs.setModel(ind);
+        JListAllIndicateurs.setModel(ind);
                 
 // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_RechercheActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(!JListIndicateurUtilise.isSelectionEmpty()){
@@ -194,20 +204,20 @@ public class AjouterIndicateur extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CalculMEcart;
+    private javax.swing.JButton CalculMoyenne;
+    private javax.swing.JButton CalculSomme;
+    private javax.swing.JList JListAllIndicateurs;
     private javax.swing.JList JListIndicateurUtilise;
-    private javax.swing.JList JListIndicateurs;
+    private javax.swing.JButton Recherche;
+    private javax.swing.JTextField TxtNomNewIndicateur;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel nomIndicateur;
     private javax.swing.JTextField textRecherche;
     // End of variables declaration//GEN-END:variables
 }
