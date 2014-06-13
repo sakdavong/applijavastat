@@ -4,15 +4,44 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="Fichier">
           <Properties>
-            <Property name="text" type="java.lang.String" value="File"/>
+            <Property name="text" type="java.lang.String" value="Fichier"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Effectuer une mise &#xe0; jour des donn&#xe9;es"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="GestionInd">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Edit"/>
+            <Property name="text" type="java.lang.String" value="Gestion des indicateurs"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="CreerGroupe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cr&#xe9;er un groupe"/>
+                <Property name="actionCommand" type="java.lang.String" value="Cr&#xe9;erGroupe"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="SupprGroupe">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer un groupe"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SupprGroupeActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="CreerIndicateur">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cr&#xe9;er un nouvel indicateur"/>
+                <Property name="actionCommand" type="java.lang.String" value="Cr&#xe9;erIndicateurs"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
