@@ -6,17 +6,40 @@
 
 package IHM;
 
+import Ecouteurs.EcouteurRecherche;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import recuperationtraces.IndicateursImpl;
+import recuperationtraces.Racine;
+
 /**
  *
  * @author Matthieu
  */
 public class CreerGroupe extends javax.swing.JPanel {
-
+    DefaultListModel dlm2;
+    DefaultListModel dlm1;
+    Racine r;
     /**
      * Creates new form CreerGroupe
      */
-    public CreerGroupe() {
+    public CreerGroupe(Racine r) {
         initComponents();
+        this.r=r;
+        dlm1= new DefaultListModel();
+        JListAllIndicateurs.setModel(dlm1);
+        //List<String> lst=new ArrayList<>();
+        for (String key : r.getTracesEtIndicateursCalcules().getTr().keySet()){
+            //lst.add(key);
+            dlm1.addElement(key);
+        }
+        dlm2= new DefaultListModel();
+        JListIndicateurUtilise.setModel(dlm2);
+        EcouteurRecherche EcoutRech= new EcouteurRecherche(r, this);
+        textRecherche.addKeyListener(EcoutRech);
     }
 
     /**
@@ -29,26 +52,41 @@ public class CreerGroupe extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        JListAllIndicateurs = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        JListIndicateurUtilise = new javax.swing.JList();
+        BoutonGversD = new javax.swing.JButton();
+        BoutonDversG = new javax.swing.JButton();
+        BoutonRecherche = new javax.swing.JButton();
+        textRecherche = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(JListAllIndicateurs);
 
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(JListIndicateurUtilise);
 
-        jButton1.setText(">");
+        BoutonGversD.setText(">");
+        BoutonGversD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonGversDActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("<");
+        BoutonDversG.setText("<");
+        BoutonDversG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonDversGActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Recherche");
+        BoutonRecherche.setText("Recherche");
+        BoutonRecherche.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonRechercheActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Créer le groupe");
 
@@ -65,19 +103,19 @@ public class CreerGroupe extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(BoutonDversG)
+                            .addComponent(BoutonGversD))
                         .addGap(14, 14, 14)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3)
+                            .addComponent(BoutonRecherche)
                             .addComponent(jLabel1))
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                            .addComponent(jTextField1))))
+                            .addComponent(textRecherche))))
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -93,13 +131,13 @@ public class CreerGroupe extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jButton1)
+                        .addComponent(BoutonGversD)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton2)))
+                        .addComponent(BoutonDversG)))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BoutonRecherche)
+                    .addComponent(textRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,18 +148,63 @@ public class CreerGroupe extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public JList getJListAllIndicateurs() {
+        return JListAllIndicateurs;
+    }
+
+    private void BoutonDversGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonDversGActionPerformed
+        //si l'utilisateur a sélectionné une valeur
+        if(!JListIndicateurUtilise.isSelectionEmpty()){
+            //on la change de liste
+            dlm1.addElement(JListIndicateurUtilise.getSelectedValue());
+            dlm2.removeElement(JListIndicateurUtilise.getSelectedValue());
+            validate();}
+        else JOptionPane.showMessageDialog(this, "Veuillez selectionner un element !");
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoutonDversGActionPerformed
+
+    private void BoutonGversDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonGversDActionPerformed
+        //si l'utilisateur a sélectionné une valeur
+        if(!JListAllIndicateurs.isSelectionEmpty()){
+            //on le change de liste
+            dlm2.addElement(JListAllIndicateurs.getSelectedValue());
+            dlm1.removeElement(JListAllIndicateurs.getSelectedValue());
+            validate();
+        }else {
+            JOptionPane.showMessageDialog(this, "Veuillez selectionner un element !");
+        }
+         
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoutonGversDActionPerformed
+
+    private void BoutonRechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonRechercheActionPerformed
+        
+        String s= textRecherche.getText(); //la chaine à rechercher
+        String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
+        List<String> l2=new ArrayList<>();
+        for(String key:l)
+            if(key.contains(s))
+                l2.add(key);
+        IndicateursImpl ind=r.getTracesEtIndicateursCalcules().creerVueIndicateurs(l2);
+        JListAllIndicateurs.setModel(ind);
+        
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BoutonRechercheActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton BoutonDversG;
+    private javax.swing.JButton BoutonGversD;
+    private javax.swing.JButton BoutonRecherche;
+    private javax.swing.JList JListAllIndicateurs;
+    private javax.swing.JList JListIndicateurUtilise;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField textRecherche;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -6,17 +6,29 @@
 
 package IHM;
 
+import Ecouteurs.EcouteurMenu;
+import javax.swing.JFrame;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import recuperationtraces.Racine;
+
 /**
  *
  * @author Matthieu
  */
 public class FrameStats extends javax.swing.JFrame {
-
+    
+    Racine r;
     /**
      * Creates new form FrameStats
+     * @param r
      */
-    public FrameStats() {
+    public FrameStats(Racine r) {
+        this.r=r;
         initComponents();
+        EcouteurMenu eMenu = new EcouteurMenu(r);
+        CreerGroupe.addActionListener(eMenu);
+        SupprGroupe.addActionListener(eMenu);
+        CreerIndicateur.addActionListener(eMenu);
     }
 
     /**
@@ -30,16 +42,41 @@ public class FrameStats extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        Fichier = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        GestionInd = new javax.swing.JMenu();
+        CreerGroupe = new javax.swing.JMenuItem();
+        SupprGroupe = new javax.swing.JMenuItem();
+        CreerIndicateur = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        Fichier.setText("Fichier");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuItem3.setText("Effectuer une mise à jour des données");
+        Fichier.add(jMenuItem3);
+
+        jMenuBar1.add(Fichier);
+
+        GestionInd.setText("Gestion des indicateurs");
+
+        CreerGroupe.setText("Créer un groupe");
+        CreerGroupe.setActionCommand("CréerGroupe");
+        GestionInd.add(CreerGroupe);
+
+        SupprGroupe.setText("Supprimer un groupe");
+        SupprGroupe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SupprGroupeActionPerformed(evt);
+            }
+        });
+        GestionInd.add(SupprGroupe);
+
+        CreerIndicateur.setText("Créer un nouvel indicateur");
+        CreerIndicateur.setActionCommand("CréerIndicateurs");
+        GestionInd.add(CreerIndicateur);
+
+        jMenuBar1.add(GestionInd);
 
         setJMenuBar(jMenuBar1);
 
@@ -56,6 +93,10 @@ public class FrameStats extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SupprGroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SupprGroupeActionPerformed
+      // TODO add your handling code here:
+    }//GEN-LAST:event_SupprGroupeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,15 +128,20 @@ public class FrameStats extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameStats().setVisible(true);
+                Racine r = new Racine();
+                new FrameStats(r).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuItem CreerGroupe;
+    private javax.swing.JMenuItem CreerIndicateur;
+    private javax.swing.JMenu Fichier;
+    private javax.swing.JMenu GestionInd;
+    private javax.swing.JMenuItem SupprGroupe;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }

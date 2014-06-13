@@ -23,11 +23,11 @@ import recuperationtraces.*;
 public class AjouterIndicateur extends javax.swing.JPanel {
       DefaultListModel dlm2;
       DefaultListModel dlm1;
-      
+      Racine r;
     /**
      * Creates new form AjouterIndicateur
      */
-    Racine r;
+    
     public AjouterIndicateur(Racine r) {
         initComponents();
         this.r=r;
@@ -189,11 +189,9 @@ public class AjouterIndicateur extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        //dLM.addElement(JListAllIndicateurs.getSelectedValue());
-        //DefaultListModel dLM2=(DefaultListModel) JListAllIndicateurs.getModel();
+        //si l'utilisateur a sélectionné une valeur
         if(!JListAllIndicateurs.isSelectionEmpty()){
-        //    dLM2.removeElementAt(JListAllIndicateurs.getSelectedIndex());
-        //    JListAllIndicateurs.invalidate();
+            //on le change de liste
             dlm2.addElement(JListAllIndicateurs.getSelectedValue());
             dlm1.removeElement(JListAllIndicateurs.getSelectedValue());
             validate();
@@ -206,20 +204,23 @@ public class AjouterIndicateur extends javax.swing.JPanel {
 
     private void RechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RechercheActionPerformed
         
-        String s= textRecherche.getText();
+        String s= textRecherche.getText(); //la chaine à rechercher
         String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
         List<String> l2=new ArrayList<>();
-        for(String ss:l)
-            if(ss.contains(s))
-                l2.add(ss);
+        for(String key:l)
+            if(key.contains(s))
+                l2.add(key);
         IndicateursImpl ind=r.getTracesEtIndicateursCalcules().creerVueIndicateurs(l2);
         JListAllIndicateurs.setModel(ind);
+        
                 
 // TODO add your handling code here:
     }//GEN-LAST:event_RechercheActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //si l'utilisateur a sélectionné une valeur
         if(!JListIndicateurUtilise.isSelectionEmpty()){
+            //on la change de liste
             dlm1.addElement(JListIndicateurUtilise.getSelectedValue());
             dlm2.removeElement(JListIndicateurUtilise.getSelectedValue());
             validate();}
