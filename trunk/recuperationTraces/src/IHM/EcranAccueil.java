@@ -26,7 +26,7 @@ public class EcranAccueil extends javax.swing.JFrame {
     Racine r;
     public EcranAccueil(Racine r) {
         initComponents();
-        Set listKeys=r.getTraces().getTr().keySet();  // Obtenir la liste des clés
+    /*    Set listKeys=r.getTraces().getTr().keySet();  // Obtenir la liste des clés
         Iterator iterateur=listKeys.iterator();
     	// Parcourir les clés et afficher les entrées de chaque clé;
         String[] logins = new String[r.getTraces().getTr().get("Nom").size()+1];
@@ -60,10 +60,10 @@ public class EcranAccueil extends javax.swing.JFrame {
                 setContentPane(jScrollPane1);
                 setSize(1024,768);
                 setVisible(true);
-                setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                setDefaultCloseOperation(DISPOSE_ON_CLOSE);*/
                 AjouterIndicateur aI=new AjouterIndicateur(r);
                 JFrame jf=new JFrame();
-                jf.setSize(600, 400);
+                jf.setSize(900, 400);
                 jf.setContentPane(aI);
                 jf.setVisible(true);
                 jf.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

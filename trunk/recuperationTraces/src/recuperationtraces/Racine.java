@@ -54,7 +54,7 @@ public class Racine {
         tracesEtIndicateursCalcules.butMaitrisePerformance();
         tracesEtIndicateursCalcules.variableMotivationnelle();
         System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
-        tracesEtIndicateursCalcules.afficher();
+        //tracesEtIndicateursCalcules.afficher();
     }
      
    /**
