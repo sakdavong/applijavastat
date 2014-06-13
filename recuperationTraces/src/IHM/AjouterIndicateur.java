@@ -8,10 +8,12 @@ package IHM;
 
 import java.awt.Component;
 import java.awt.PopupMenu;
+import javax.swing.DefaultListModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+
 import recuperationtraces.*;
 
 /**
@@ -19,7 +21,7 @@ import recuperationtraces.*;
  * @author Tigro
  */
 public class AjouterIndicateur extends javax.swing.JPanel {
-
+      
     /**
      * Creates new form AjouterIndicateur
      */
@@ -36,7 +38,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         }
         DefaultListModel dlm2= new DefaultListModel();
         JListIndicateurUtilise.setModel(dlm2);
-        
+      
     }
 
     /**
@@ -165,7 +167,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         DefaultListModel dLM=(DefaultListModel) JListIndicateurUtilise.getModel();
         //dLM.addElement(JListAllIndicateurs.getSelectedValue());
         DefaultListModel dLM2=(DefaultListModel) JListAllIndicateurs.getModel();
