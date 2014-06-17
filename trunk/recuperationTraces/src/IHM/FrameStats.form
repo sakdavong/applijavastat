@@ -41,6 +41,12 @@
                 <Property name="actionCommand" type="java.lang.String" value="Cr&#xe9;erIndicateurs"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="SupprimerIndicateur">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Supprimer un indicateur"/>
+                <Property name="actionCommand" type="java.lang.String" value="SupprimerIndicateur"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
       </SubComponents>
