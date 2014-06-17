@@ -8,6 +8,7 @@ package Ecouteurs;
 
 import IHM.AjouterIndicateur;
 import IHM.CreerGroupe;
+import IHM.SupprimerIndicateur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -89,6 +90,13 @@ public class EcouteurRecherche implements KeyListener{
                 }
                 ((AjouterIndicateur)fenetre).getJListAllIndicateurs().setModel(dLM);
                 break;
+            case "SupprimerInd" :
+                for(String key:l)
+                    //si la clé contient la chaine recherché
+                    if(key.contains(s))
+                        dLM.addElement(key);
+                        
+                ((SupprimerIndicateur)fenetre).getJListAllIndicateurs().setModel(dLM);
         }
         
         System.out.println(s);

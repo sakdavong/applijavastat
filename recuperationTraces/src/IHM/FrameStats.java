@@ -29,6 +29,7 @@ public class FrameStats extends javax.swing.JFrame {
         CreerGroupe.addActionListener(eMenu);
         SupprGroupe.addActionListener(eMenu);
         CreerIndicateur.addActionListener(eMenu);
+        SupprimerIndicateur.addActionListener(eMenu);
     }
 
     /**
@@ -48,6 +49,7 @@ public class FrameStats extends javax.swing.JFrame {
         CreerGroupe = new javax.swing.JMenuItem();
         SupprGroupe = new javax.swing.JMenuItem();
         CreerIndicateur = new javax.swing.JMenuItem();
+        SupprimerIndicateur = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,6 +77,10 @@ public class FrameStats extends javax.swing.JFrame {
         CreerIndicateur.setText("Créer un nouvel indicateur");
         CreerIndicateur.setActionCommand("CréerIndicateurs");
         GestionInd.add(CreerIndicateur);
+
+        SupprimerIndicateur.setText("Supprimer un indicateur");
+        SupprimerIndicateur.setActionCommand("SupprimerIndicateur");
+        GestionInd.add(SupprimerIndicateur);
 
         jMenuBar1.add(GestionInd);
 
@@ -140,6 +146,7 @@ public class FrameStats extends javax.swing.JFrame {
     private javax.swing.JMenu Fichier;
     private javax.swing.JMenu GestionInd;
     private javax.swing.JMenuItem SupprGroupe;
+    private javax.swing.JMenuItem SupprimerIndicateur;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JTabbedPane jTabbedPane1;

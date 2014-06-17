@@ -26,11 +26,12 @@ public class AjouterIndicateur extends javax.swing.JPanel {
       DefaultListModel dlm2;
       DefaultListModel dlm1;
       Racine r;
+      List<String> lstAcalculer; 
     /**
      * Creates new form AjouterIndicateur
      */
     
-    List<String> lstAcalculer; 
+    
     public AjouterIndicateur(Racine r) {
         initComponents();
         this.r=r;

@@ -46,14 +46,21 @@ public class EcouteurMenu implements ActionListener{
                 
             break;
             case "Supprimer un groupe":
-                JFrame fen3 = new JFrame("Créer un groupe");
+                JFrame fen3 = new JFrame("Supprimer un groupe");
                 SupprimerGroupe supGroupe=new SupprimerGroupe(r);
                 fen3.setContentPane(supGroupe);
                 fen3.pack();
                 fen3.setVisible(true);
                 fen3.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 break;
-                
+            case "SupprimerIndicateur":
+                JFrame fen2 = new JFrame("Supprimer un indicateur");
+                SupprimerIndicateur supInd=new SupprimerIndicateur(r);
+                fen2.setContentPane(supInd);
+                fen2.pack();
+                fen2.setVisible(true);
+                fen2.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                break;
         }
     }
     
