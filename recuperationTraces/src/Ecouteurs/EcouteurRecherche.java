@@ -16,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import recuperationtraces.IndicateursImpl;
 import recuperationtraces.Racine;
 
@@ -45,14 +46,47 @@ public class EcouteurRecherche implements KeyListener{
         }
         String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
         DefaultListModel dLM=new DefaultListModel();            
-        for(String key:l)
-            if(key.contains(s))
-                dLM.addElement(key);
+        boolean isSelectionne=false;
+        
         switch (typeFenetre) {
             case "Groupe":
+                for(String key:l){
+                    isSelectionne=false;
+                    //si la clé contient la chaine recherché
+                    if(key.contains(s)){
+                        //modele de la liste des éléments sélectionné pour le nouvel indicateur
+                        ListModel modelUtilise = ((CreerGroupe)fenetre).getJListIndicateurUtilise().getModel();
+                        //on vérifie si l'indicateur a été sélectionné ou pas
+                        for(int i=0;i<modelUtilise.getSize();i++){
+                            if(modelUtilise.getElementAt(i).equals(key)){
+                                isSelectionne=true;
+                            }
+                        }
+                        //si il n'est pas sélectionné on le met dans les résultats de la recherche
+                        if (!isSelectionne)
+                            dLM.addElement(key);
+                    }
+                }
                 ((CreerGroupe)fenetre).getJListAllIndicateurs().setModel(dLM);
                 break;
             case "Indicateur":
+                for(String key:l){
+                    isSelectionne=false;
+                    //si la clé contient la chaine recherché
+                    if(key.contains(s)){
+                        //modele de la liste des éléments sélectionné pour le nouvel indicateur
+                        ListModel modelUtilise = (((AjouterIndicateur)fenetre).getJListIndicateurUtilise().getModel());
+                        //on vérifie si l'indicateur a été sélectionné ou pas
+                        for(int i=0;i<modelUtilise.getSize();i++){
+                            if(modelUtilise.getElementAt(i).equals(key)){
+                                isSelectionne=true;
+                            }
+                        }
+                        //si il n'est pas sélectionné on le met dans les résultats de la recherche
+                        if (!isSelectionne)
+                            dLM.addElement(key);
+                    }
+                }
                 ((AjouterIndicateur)fenetre).getJListAllIndicateurs().setModel(dLM);
                 break;
         }
