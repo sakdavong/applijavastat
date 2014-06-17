@@ -40,7 +40,7 @@ public class CreerGroupe extends javax.swing.JPanel {
         }
         dlm2= new DefaultListModel();
         JListIndicateurUtilise.setModel(dlm2);
-        EcouteurRecherche EcoutRech= new EcouteurRecherche(r, this);
+        EcouteurRecherche EcoutRech= new EcouteurRecherche(r, this,"Groupe");
         textRecherche.addKeyListener(EcoutRech);
     }
 
