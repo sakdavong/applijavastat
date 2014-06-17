@@ -10,6 +10,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  * classe racine de l'application qui contiendra une HashMap 
@@ -23,6 +25,7 @@ public class Racine {
     IndicateursImpl traces; 
     IndicateursImpl tracesEtIndicateursCalcules;
     HashMap<String,IndicateursImpl> groupe;
+    public JTree arbre;
     /**
      * constructeur de la racine
      */
@@ -40,6 +43,8 @@ public class Racine {
             traces.sauver(fichier);
             System.out.println("fin de la sauvegarde");
         }
+        DefaultMutableTreeNode Racine = new DefaultMutableTreeNode("groupe");
+        arbre= new JTree(Racine);
         groupe = new HashMap();
         tracesEtIndicateursCalcules = new IndicateursImpl(this);
         tracesEtIndicateursCalcules.setTr(traces.getTr());

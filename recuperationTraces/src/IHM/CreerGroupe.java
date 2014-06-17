@@ -12,6 +12,8 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 import recuperationtraces.IndicateursImpl;
 import recuperationtraces.Racine;
 
@@ -42,6 +44,7 @@ public class CreerGroupe extends javax.swing.JPanel {
         JListIndicateurUtilise.setModel(dlm2);
         EcouteurRecherche EcoutRech= new EcouteurRecherche(r, this,"Groupe");
         textRecherche.addKeyListener(EcoutRech);
+
     }
 
     public JList getJListIndicateurUtilise() {
@@ -207,7 +210,13 @@ public class CreerGroupe extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         r.getGroupe().put(textNomGroupe.getText(),r.getTracesEtIndicateursCalcules().creerVueIndicateurs(listelements));
-        
+        DefaultMutableTreeNode noeud = new DefaultMutableTreeNode(textNomGroupe.getText());
+        for(int i=0;i<listelements.size();i++){
+            DefaultMutableTreeNode feuille =new DefaultMutableTreeNode(listelements.get(i));
+            noeud.add(feuille);
+        }
+        DefaultMutableTreeNode racine=(DefaultMutableTreeNode) r.arbre.getModel().getRoot();
+        racine.add(noeud);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
