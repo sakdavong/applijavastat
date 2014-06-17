@@ -52,7 +52,7 @@ public class EcouteurMenu implements ActionListener{
                 fen3.pack();
                 fen3.setVisible(true);
                 fen3.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                break;
+            break;
             case "SupprimerIndicateur":
                 JFrame fen2 = new JFrame("Supprimer un indicateur");
                 SupprimerIndicateur supInd=new SupprimerIndicateur(r);
@@ -60,7 +60,10 @@ public class EcouteurMenu implements ActionListener{
                 fen2.pack();
                 fen2.setVisible(true);
                 fen2.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-                break;
+            break;
+            case "AfficherDonnees":
+                r.getTracesEtIndicateursCalcules().afficher();
+            break;
         }
     }
     

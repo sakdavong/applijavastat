@@ -30,6 +30,7 @@ public class FrameStats extends javax.swing.JFrame {
         SupprGroupe.addActionListener(eMenu);
         CreerIndicateur.addActionListener(eMenu);
         SupprimerIndicateur.addActionListener(eMenu);
+        AfficherDonnees.addActionListener(eMenu);
     }
 
     /**
@@ -45,6 +46,7 @@ public class FrameStats extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         Fichier = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        AfficherDonnees = new javax.swing.JMenuItem();
         GestionInd = new javax.swing.JMenu();
         CreerGroupe = new javax.swing.JMenuItem();
         SupprGroupe = new javax.swing.JMenuItem();
@@ -57,6 +59,10 @@ public class FrameStats extends javax.swing.JFrame {
 
         jMenuItem3.setText("Effectuer une mise à jour des données");
         Fichier.add(jMenuItem3);
+
+        AfficherDonnees.setText("Afficher les données");
+        AfficherDonnees.setActionCommand("AfficherDonnees");
+        Fichier.add(AfficherDonnees);
 
         jMenuBar1.add(Fichier);
 
@@ -141,6 +147,7 @@ public class FrameStats extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AfficherDonnees;
     private javax.swing.JMenuItem CreerGroupe;
     private javax.swing.JMenuItem CreerIndicateur;
     private javax.swing.JMenu Fichier;

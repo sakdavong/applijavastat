@@ -14,6 +14,12 @@
                 <Property name="text" type="java.lang.String" value="Effectuer une mise &#xe0; jour des donn&#xe9;es"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="AfficherDonnees">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Afficher les donn&#xe9;es"/>
+                <Property name="actionCommand" type="java.lang.String" value="AfficherDonnees"/>
+              </Properties>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="GestionInd">
