@@ -28,14 +28,16 @@ public class AjouterIndicateur extends javax.swing.JPanel {
      * Creates new form AjouterIndicateur
      */
     
+    List<String> lstAcalculer; 
     public AjouterIndicateur(Racine r) {
         initComponents();
         this.r=r;
         dlm1= new DefaultListModel();
+        lstAcalculer=new ArrayList<>();
         JListAllIndicateurs.setModel(dlm1);
         //List<String> lst=new ArrayList<>();
         for (String key : r.getTracesEtIndicateursCalcules().getTr().keySet()){
-            //lst.add(key);
+
             dlm1.addElement(key);
         }
         dlm2= new DefaultListModel();
@@ -92,10 +94,25 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         });
 
         CalculSomme.setText("Sommme");
+        CalculSomme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalculSommeActionPerformed(evt);
+            }
+        });
 
         CalculMoyenne.setText("Moyenne");
+        CalculMoyenne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalculMoyenneActionPerformed(evt);
+            }
+        });
 
         CalculMEcart.setText("Ecart");
+        CalculMEcart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalculMEcartActionPerformed(evt);
+            }
+        });
 
         nomIndicateur.setText("Nom du nouvel indicateur  :");
 
@@ -192,8 +209,11 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         //si l'utilisateur a sélectionné une valeur
         if(!JListAllIndicateurs.isSelectionEmpty()){
             //on le change de liste
+            System.out.println(lstAcalculer);
+            lstAcalculer.add(JListAllIndicateurs.getSelectedValue().toString());
             dlm2.addElement(JListAllIndicateurs.getSelectedValue());
             dlm1.removeElement(JListAllIndicateurs.getSelectedValue());
+            System.out.println(lstAcalculer);
             validate();
         }else {
             JOptionPane.showMessageDialog(this, "Veuillez selectionner un element !");
@@ -206,12 +226,11 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         
         String s= textRecherche.getText(); //la chaine à rechercher
         String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
-        List<String> l2=new ArrayList<>();
+        DefaultListModel dLM=new DefaultListModel();            
         for(String key:l)
             if(key.contains(s))
-                l2.add(key);
-        IndicateursImpl ind=r.getTracesEtIndicateursCalcules().creerVueIndicateurs(l2);
-        JListAllIndicateurs.setModel(ind);
+                dLM.addElement(key);
+        JListAllIndicateurs.setModel(dLM);
         
                 
 // TODO add your handling code here:
@@ -221,12 +240,36 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         //si l'utilisateur a sélectionné une valeur
         if(!JListIndicateurUtilise.isSelectionEmpty()){
             //on la change de liste
+            lstAcalculer.remove(JListIndicateurUtilise.getSelectedValue().toString());
             dlm1.addElement(JListIndicateurUtilise.getSelectedValue());
             dlm2.removeElement(JListIndicateurUtilise.getSelectedValue());
+            System.out.println(lstAcalculer);
             validate();}
         else JOptionPane.showMessageDialog(this, "Veuillez selectionner un element !");
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CalculMoyenneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculMoyenneActionPerformed
+        if(!lstAcalculer.isEmpty())
+        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
+        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcule de la moyenne");
+// TODO add your handling code here:
+    }//GEN-LAST:event_CalculMoyenneActionPerformed
+
+    private void CalculSommeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculSommeActionPerformed
+
+        if(!lstAcalculer.isEmpty())
+        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
+        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcule de la somme"); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CalculSommeActionPerformed
+
+    private void CalculMEcartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculMEcartActionPerformed
+
+        if(!lstAcalculer.isEmpty())
+        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
+        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcule de l'écart");        // TODO add your handling code here:
+    }//GEN-LAST:event_CalculMEcartActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
