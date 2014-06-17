@@ -6,9 +6,9 @@
 
 package IHM;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import recuperationtraces.*;
 
 /**
@@ -25,7 +25,7 @@ public class SupprimerGroupe extends javax.swing.JPanel {
         initComponents();
         this.r=r;
         //r.arbre est dans la Racine et contient les les groupe crée
-        jTree1.setModel(r.arbre.getModel());
+        jTree1.setModel(r.arbreModele);
         validate();
     }
 
@@ -104,6 +104,9 @@ public class SupprimerGroupe extends javax.swing.JPanel {
         for(DefaultMutableTreeNode key:l)
         if(key.toString().contains(s))
         racine.add(key);
+        
+        
+        
         jTree1.setModel(jt.getModel());
         
 
@@ -111,8 +114,23 @@ public class SupprimerGroupe extends javax.swing.JPanel {
     }//GEN-LAST:event_BoutonRechercheActionPerformed
 
     private void BoutonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonSupprimerActionPerformed
-
-        //r.getGroupe().remove(r.arbre.getModel()..getSelectedValue().toString());
+        
+        TreePath sp = jTree1.getSelectionModel().getSelectionPath();
+        TreePath[] sp2 = jTree1.getSelectionModel().getSelectionPaths();
+        
+        DefaultMutableTreeNode dmt=(DefaultMutableTreeNode)(sp.getLastPathComponent());
+        
+        
+        r.getGroupe().remove((String)(dmt.getUserObject()));
+        
+        int pos = r.arbreModele.getIndexOfChild(dmt.getParent(), dmt);
+        System.out.println(sp+" sp2 size:" +sp2.length+" "+pos);
+        //().remove(dmt);
+        
+        r.arbreModele.removeNodeFromParent(dmt);
+        //r.arbreModele.nodesWereRemoved(dmt.getParent(), new int[]{pos}, new Object[]{dmt});
+        //r.arbreModele.nodeStructureChanged(dmt.getParent());
+        //jTree1.getParent().revalidate();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BoutonSupprimerActionPerformed
