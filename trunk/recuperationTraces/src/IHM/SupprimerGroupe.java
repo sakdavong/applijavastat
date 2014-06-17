@@ -7,6 +7,8 @@
 package IHM;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
 import recuperationtraces.*;
 
 /**
@@ -22,13 +24,9 @@ public class SupprimerGroupe extends javax.swing.JPanel {
     public SupprimerGroupe(Racine r) {
         initComponents();
         this.r=r;
-        DefaultListModel dlm1= new DefaultListModel();
-        for (String key : r.getGroupe().keySet()){
-            //lst.add(key);
-            dlm1.addElement(key);
-        }
-        
-        JListAllIndicateurs.setModel(dlm1);
+        //r.arbre est dans la Racine et contient les les groupe crée
+        jTree1.setModel(r.arbre.getModel());
+        validate();
     }
 
     /**
@@ -40,13 +38,11 @@ public class SupprimerGroupe extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        JListAllIndicateurs = new javax.swing.JList();
         BoutonRecherche = new javax.swing.JButton();
         textRecherche = new javax.swing.JTextField();
         BoutonSupprimer = new javax.swing.JButton();
-
-        jScrollPane1.setViewportView(JListAllIndicateurs);
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
 
         BoutonRecherche.setText("Recherche");
         BoutonRecherche.addActionListener(new java.awt.event.ActionListener() {
@@ -62,32 +58,34 @@ public class SupprimerGroupe extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane2.setViewportView(jTree1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(BoutonSupprimer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(BoutonRecherche)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(BoutonSupprimer)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(textRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(28, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(BoutonRecherche)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BoutonRecherche)
                     .addComponent(textRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -98,21 +96,23 @@ public class SupprimerGroupe extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BoutonRechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonRechercheActionPerformed
-
+      
         String s= textRecherche.getText(); //la chaine à rechercher
-        String[] l=r.getGroupe().keySet().toArray(new String[r.getGroupe().keySet().size()]);
-        DefaultListModel dLM=new DefaultListModel();
-        for(String key:l)
-        if(key.contains(s))
-        dLM.addElement(key);
-        JListAllIndicateurs.setModel(dLM);
+        DefaultMutableTreeNode[] l=r.getGroupe().keySet().toArray(new DefaultMutableTreeNode[r.getGroupe().keySet().size()]);
+        DefaultMutableTreeNode racine = new DefaultMutableTreeNode("groupe");
+        JTree jt= new JTree(racine);
+        for(DefaultMutableTreeNode key:l)
+        if(key.toString().contains(s))
+        racine.add(key);
+        jTree1.setModel(jt.getModel());
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BoutonRechercheActionPerformed
 
     private void BoutonSupprimerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonSupprimerActionPerformed
 
-        r.getGroupe().remove(JListAllIndicateurs.getSelectedValue().toString());
+        //r.getGroupe().remove(r.arbre.getModel()..getSelectedValue().toString());
 
         // TODO add your handling code here:
     }//GEN-LAST:event_BoutonSupprimerActionPerformed
@@ -121,8 +121,8 @@ public class SupprimerGroupe extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonRecherche;
     private javax.swing.JButton BoutonSupprimer;
-    private javax.swing.JList JListAllIndicateurs;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTree jTree1;
     private javax.swing.JTextField textRecherche;
     // End of variables declaration//GEN-END:variables
 }
