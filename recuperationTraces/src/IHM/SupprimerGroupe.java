@@ -7,6 +7,8 @@
 package IHM;
 
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import recuperationtraces.*;
@@ -26,6 +28,14 @@ public class SupprimerGroupe extends javax.swing.JPanel {
         this.r=r;
         //r.arbre est dans la Racine et contient les les groupe crée
         jTree1.setModel(r.arbreModele);
+        jTree1.addTreeSelectionListener(new TreeSelectionListener() {
+
+            @Override
+            public void valueChanged(TreeSelectionEvent e) {
+                e.getPath().getPathCount();
+                jTree1.setSelectionPaths(new TreePath[]{});
+            }
+        });
         validate();
     }
 

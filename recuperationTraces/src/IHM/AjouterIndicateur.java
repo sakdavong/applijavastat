@@ -40,7 +40,6 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         JListAllIndicateurs.setModel(dlm1);
         //List<String> lst=new ArrayList<>();
         for (String key : r.getTracesEtIndicateursCalcules().getTr().keySet()){
-
             dlm1.addElement(key);
         }
         dlm2= new DefaultListModel();
