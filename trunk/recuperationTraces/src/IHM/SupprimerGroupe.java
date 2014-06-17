@@ -22,6 +22,13 @@ public class SupprimerGroupe extends javax.swing.JPanel {
     public SupprimerGroupe(Racine r) {
         initComponents();
         this.r=r;
+        DefaultListModel dlm1= new DefaultListModel();
+        for (String key : r.getGroupe().keySet()){
+            //lst.add(key);
+            dlm1.addElement(key);
+        }
+        
+        JListAllIndicateurs.setModel(dlm1);
     }
 
     /**
