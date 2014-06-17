@@ -48,6 +48,10 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         textRecherche.addKeyListener(EcoutRech);
     }
 
+    public JList getJListIndicateurUtilise() {
+        return JListIndicateurUtilise;
+    }
+
     public JList getJListAllIndicateurs() {
         return JListAllIndicateurs;
     }
