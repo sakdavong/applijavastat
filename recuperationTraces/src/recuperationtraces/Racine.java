@@ -8,6 +8,7 @@ package recuperationtraces;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class Racine {
     //on ne le modifiera pas on créera des copies pour les modifications
     IndicateursImpl traces; 
     IndicateursImpl tracesEtIndicateursCalcules;
+    HashMap<String,IndicateursImpl> groupe;
     /**
      * constructeur de la racine
      */
@@ -38,6 +40,7 @@ public class Racine {
             traces.sauver(fichier);
             System.out.println("fin de la sauvegarde");
         }
+        groupe = new HashMap();
         tracesEtIndicateursCalcules = new IndicateursImpl(this);
         tracesEtIndicateursCalcules.setTr(traces.getTr());
         //on construit la Hashmap qui contiendra les indicateurs remontés du serveur 
@@ -75,6 +78,14 @@ public class Racine {
 
     public IndicateursImpl getTracesEtIndicateursCalcules() {
         return tracesEtIndicateursCalcules;
+    }
+
+    public HashMap<String, IndicateursImpl> getGroupe() {
+        return groupe;
+    }
+
+    public void setGroupe(HashMap<String, IndicateursImpl> groupe) {
+        this.groupe = groupe;
     }
     
     

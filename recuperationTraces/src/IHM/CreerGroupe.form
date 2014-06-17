@@ -37,7 +37,7 @@
                       </Group>
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField2" pref="139" max="32767" attributes="0"/>
+                          <Component id="textNomGroupe" pref="139" max="32767" attributes="0"/>
                           <Component id="textRecherche" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -72,7 +72,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="textNomGroupe" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -145,8 +145,11 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cr&#xe9;er le groupe"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="textNomGroupe">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
