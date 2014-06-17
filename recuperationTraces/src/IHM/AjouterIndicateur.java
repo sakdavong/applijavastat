@@ -261,25 +261,46 @@ public class AjouterIndicateur extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void CalculMoyenneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculMoyenneActionPerformed
-        if(!lstAcalculer.isEmpty())
-        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
-        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcul de la moyenne");
+        if(!lstAcalculer.isEmpty()){
+            if (!TxtNomNewIndicateur.getText().isEmpty())
+                try{
+                    r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
+                    JOptionPane.showMessageDialog(null,"L'indicateur "+ TxtNomNewIndicateur.getText()+" a été crée.");
+                } catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(null,"Un des indicateurs choisi n'est pas numérique");
+                }   
+            else JOptionPane.showMessageDialog(null,"Veuillez choisir le nom du nouvel indicateur");
+        }else JOptionPane.showMessageDialog(null,"Veuillez choisir des indicateurs pour le calcul de la moyenne");
 // TODO add your handling code here:
     }//GEN-LAST:event_CalculMoyenneActionPerformed
 
     private void CalculSommeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculSommeActionPerformed
 
-        if(!lstAcalculer.isEmpty())
-        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
-        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcul de la somme"); 
+        if(!lstAcalculer.isEmpty()){
+                if (!TxtNomNewIndicateur.getText().isEmpty())
+                    try{
+                        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
+                        JOptionPane.showMessageDialog(null,"L'indicateur "+ TxtNomNewIndicateur.getText()+" a été crée.");
+                    }catch(NumberFormatException e){
+                        JOptionPane.showMessageDialog(null,"Un des indicateurs choisi n'est pas numérique");
+                    }    
+                        else JOptionPane.showMessageDialog(null,"Veuillez choisir le nom du nouvel indicateur");
+        }else JOptionPane.showMessageDialog(null,"Veuillez choisir des indicateurs pour le calcul de la somme"); 
         // TODO add your handling code here:
     }//GEN-LAST:event_CalculSommeActionPerformed
 
     private void CalculMEcartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculMEcartActionPerformed
 
-        if(!lstAcalculer.isEmpty())
-        r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
-        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcule de l'écart");        // TODO add your handling code here:
+        if(!lstAcalculer.isEmpty()){
+            if (!TxtNomNewIndicateur.getText().isEmpty())
+                try {
+                    r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
+                    JOptionPane.showMessageDialog(null,"L'indicateur "+ TxtNomNewIndicateur.getText()+" a été crée.");
+                }catch(NumberFormatException e){
+                        JOptionPane.showMessageDialog(null,"Un des indicateurs choisi n'est pas numérique");
+                    } 
+            else JOptionPane.showMessageDialog(null,"Veuillez choisir le nom du nouvel indicateur");
+        }else JOptionPane.showMessageDialog(null,"Veuillez choisir des indicateurs pour le calcul de l'écart");        // TODO add your handling code here:
     }//GEN-LAST:event_CalculMEcartActionPerformed
 
 
