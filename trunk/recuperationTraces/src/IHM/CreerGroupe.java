@@ -164,7 +164,7 @@ public class CreerGroupe extends javax.swing.JPanel {
         if(!JListIndicateurUtilise.isSelectionEmpty()){
             //on la change de liste
             dlm1.addElement(JListIndicateurUtilise.getSelectedValue());
-            listelements.remove(JListAllIndicateurs.getSelectedValue().toString());
+            listelements.remove(JListIndicateurUtilise.getSelectedValue().toString());
             ((DefaultListModel)JListIndicateurUtilise.getModel()).removeElement(JListIndicateurUtilise.getSelectedValue());
             validate();}
         else JOptionPane.showMessageDialog(this, "Veuillez selectionner un element !");

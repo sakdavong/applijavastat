@@ -6,14 +6,14 @@
 
 package Ecouteurs;
 
-import IHM.AjouterIndicateur;
-import IHM.CreerGroupe;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-import recuperationtraces.Racine;
 
+import recuperationtraces.*;
+import IHM.*;
 /**
  *
  * @author Matthieu
@@ -45,6 +45,15 @@ public class EcouteurMenu implements ActionListener{
                 fen1.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
                 
             break;
+            case "Supprimer un groupe":
+                JFrame fen3 = new JFrame("Créer un groupe");
+                SupprimerGroupe supGroupe=new SupprimerGroupe(r);
+                fen3.setContentPane(supGroupe);
+                fen3.pack();
+                fen3.setVisible(true);
+                fen3.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                break;
+                
         }
     }
     
