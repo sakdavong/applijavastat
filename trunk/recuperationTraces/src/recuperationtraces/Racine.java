@@ -6,12 +6,14 @@
 
 package recuperationtraces;
 
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  * classe racine de l'application qui contiendra une HashMap 
@@ -25,7 +27,7 @@ public class Racine {
     IndicateursImpl traces; 
     IndicateursImpl tracesEtIndicateursCalcules;
     HashMap<String,IndicateursImpl> groupe;
-    public JTree arbre;
+    public DefaultTreeModel arbreModele;
     /**
      * constructeur de la racine
      */
@@ -44,7 +46,7 @@ public class Racine {
             System.out.println("fin de la sauvegarde");
         }
         DefaultMutableTreeNode Racine = new DefaultMutableTreeNode("groupe");
-        arbre= new JTree(Racine);
+        arbreModele= new DefaultTreeModel(Racine);
         groupe = new HashMap();
         tracesEtIndicateursCalcules = new IndicateursImpl(this);
         tracesEtIndicateursCalcules.setTr(traces.getTr());

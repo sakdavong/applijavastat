@@ -215,8 +215,9 @@ public class CreerGroupe extends javax.swing.JPanel {
             DefaultMutableTreeNode feuille =new DefaultMutableTreeNode(listelements.get(i));
             noeud.add(feuille);
         }
-        DefaultMutableTreeNode racine=(DefaultMutableTreeNode) r.arbre.getModel().getRoot();
-        racine.add(noeud);
+        DefaultMutableTreeNode racine=(DefaultMutableTreeNode) r.arbreModele.getRoot();
+        r.arbreModele.insertNodeInto(noeud, racine, 0);
+        //racine.add(noeud);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
