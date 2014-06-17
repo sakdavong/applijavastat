@@ -212,7 +212,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
             System.out.println(lstAcalculer);
             lstAcalculer.add(JListAllIndicateurs.getSelectedValue().toString());
             dlm2.addElement(JListAllIndicateurs.getSelectedValue());
-            dlm1.removeElement(JListAllIndicateurs.getSelectedValue());
+            ((DefaultListModel)JListAllIndicateurs.getModel()).removeElement(JListAllIndicateurs.getSelectedValue());
             System.out.println(lstAcalculer);
             validate();
         }else {
@@ -241,7 +241,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         if(!JListIndicateurUtilise.isSelectionEmpty()){
             //on la change de liste
             lstAcalculer.remove(JListIndicateurUtilise.getSelectedValue().toString());
-            dlm1.addElement(JListIndicateurUtilise.getSelectedValue());
+            ((DefaultListModel)JListAllIndicateurs.getModel()).addElement(JListIndicateurUtilise.getSelectedValue());
             dlm2.removeElement(JListIndicateurUtilise.getSelectedValue());
             System.out.println(lstAcalculer);
             validate();}
@@ -252,7 +252,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
     private void CalculMoyenneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalculMoyenneActionPerformed
         if(!lstAcalculer.isEmpty())
         r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
-        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcule de la moyenne");
+        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcul de la moyenne");
 // TODO add your handling code here:
     }//GEN-LAST:event_CalculMoyenneActionPerformed
 
@@ -260,7 +260,7 @@ public class AjouterIndicateur extends javax.swing.JPanel {
 
         if(!lstAcalculer.isEmpty())
         r.getTracesEtIndicateursCalcules().creerIndicateurMoyenne(TxtNomNewIndicateur.getText(), lstAcalculer);
-        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcule de la somme"); 
+        else JOptionPane.showMessageDialog(null,"choisissez les indicateurs pour le calcul de la somme"); 
         // TODO add your handling code here:
     }//GEN-LAST:event_CalculSommeActionPerformed
 
