@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JTextField;
 import recuperationtraces.IndicateursImpl;
 import recuperationtraces.Racine;
@@ -38,14 +39,13 @@ public class EcouteurRecherche implements KeyListener{
         }else {
             s=((JTextField)e.getSource()).getText();
         }
-            String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
-            List<String> l2=new ArrayList<>();
-            for(String key:l)
-                if(key.contains(s))
-                    l2.add(key);
-            IndicateursImpl ind=r.getTracesEtIndicateursCalcules().creerVueIndicateurs(l2);
-            fenetre.getJListAllIndicateurs().setModel(ind);
-            System.out.println(s);
+        String[] l=r.getTracesEtIndicateursCalcules().getTr().keySet().toArray(new String[r.getTracesEtIndicateursCalcules().getTr().keySet().size()]);
+        DefaultListModel dLM=new DefaultListModel();            
+        for(String key:l)
+            if(key.contains(s))
+                dLM.addElement(key);
+        fenetre.getJListAllIndicateurs().setModel(dLM);
+        System.out.println(s);
         
     }
 
