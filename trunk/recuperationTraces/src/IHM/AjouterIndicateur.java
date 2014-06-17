@@ -6,12 +6,14 @@
 
 package IHM;
 
+import Ecouteurs.EcouteurRecherche;
 import java.awt.Component;
 import java.awt.PopupMenu;
 import javax.swing.DefaultListModel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import recuperationtraces.*;
@@ -42,7 +44,12 @@ public class AjouterIndicateur extends javax.swing.JPanel {
         }
         dlm2= new DefaultListModel();
         JListIndicateurUtilise.setModel(dlm2);
-      
+        EcouteurRecherche EcoutRech= new EcouteurRecherche(r, this,"Indicateur");
+        textRecherche.addKeyListener(EcoutRech);
+    }
+
+    public JList getJListAllIndicateurs() {
+        return JListAllIndicateurs;
     }
 
     /**

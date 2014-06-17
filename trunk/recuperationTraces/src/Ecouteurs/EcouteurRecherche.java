@@ -6,12 +6,15 @@
 
 package Ecouteurs;
 
+import IHM.AjouterIndicateur;
 import IHM.CreerGroupe;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import recuperationtraces.IndicateursImpl;
 import recuperationtraces.Racine;
@@ -22,12 +25,13 @@ import recuperationtraces.Racine;
  */
 public class EcouteurRecherche implements KeyListener{
     Racine r;
-    CreerGroupe fenetre;
+    JPanel fenetre;
+    String typeFenetre;
     
-    public EcouteurRecherche(Racine r,CreerGroupe cG){
+    public EcouteurRecherche(Racine r,JPanel p, String type){
         this.r=r;
-        fenetre= cG;
-       
+        fenetre= p;
+        typeFenetre=type;
     }
     
     
@@ -44,7 +48,15 @@ public class EcouteurRecherche implements KeyListener{
         for(String key:l)
             if(key.contains(s))
                 dLM.addElement(key);
-        fenetre.getJListAllIndicateurs().setModel(dLM);
+        switch (typeFenetre) {
+            case "Groupe":
+                ((CreerGroupe)fenetre).getJListAllIndicateurs().setModel(dLM);
+                break;
+            case "Indicateur":
+                ((AjouterIndicateur)fenetre).getJListAllIndicateurs().setModel(dLM);
+                break;
+        }
+        
         System.out.println(s);
         
     }
