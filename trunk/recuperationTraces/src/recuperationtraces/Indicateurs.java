@@ -47,7 +47,7 @@ public interface Indicateurs {
      * qui sera utilisable par R
      * @return la matrice
      */
-    public double[][] creerMatrice();
+    //public double[][] creerMatrice();
     
     /**
      * Crée une table à partir des données de la HashMap
@@ -55,7 +55,7 @@ public interface Indicateurs {
      * Dans le cas, où la HashMap ne contient q'une ligne
      * @return la table
      */
-    public double[] creerTable();
+    //public double[] creerTable();
     
     /**
      * Crée une fenetre qui affiche la HashMap

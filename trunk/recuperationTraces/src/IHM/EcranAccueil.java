@@ -6,8 +6,11 @@
 
 package IHM;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -149,8 +152,12 @@ public class EcranAccueil extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Racine r=new Racine();
-                new EcranAccueil(r).setVisible(true);
+                try {
+                    Racine r=new Racine();
+                    new EcranAccueil(r).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(EcranAccueil.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

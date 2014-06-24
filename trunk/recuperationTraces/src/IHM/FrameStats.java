@@ -7,6 +7,9 @@
 package IHM;
 
 import Ecouteurs.EcouteurMenu;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import recuperationtraces.Racine;
@@ -140,8 +143,12 @@ public class FrameStats extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Racine r = new Racine();
-                new FrameStats(r).setVisible(true);
+                try {
+                    Racine r = new Racine();
+                    new FrameStats(r).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(FrameStats.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

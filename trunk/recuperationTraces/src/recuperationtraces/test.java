@@ -6,6 +6,7 @@
 
 package recuperationtraces;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,8 @@ import java.util.List;
  */
 public class test {
     
-    public static void main (String args[]){
-        Racine r = new Racine();
+    public static void main (String args[]) throws IOException{
+        new Racine();
         
     }
 }

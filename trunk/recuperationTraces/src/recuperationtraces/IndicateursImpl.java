@@ -184,15 +184,6 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
         this.tr = tr;
     }
 
-    @Override
-    public double[][] creerMatrice() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double[] creerTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
      /**
      * permet de sauvegarder un IndicateurImpl (serialisation)
      * @param monFichier fichier dans lequel on charge
@@ -746,6 +737,18 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
         creerIndicateurMoyenne("Moyenne_imagePrivée", listeIprivee);
         creerIndicateurMoyenne("Moyenne_imagePublique", listeIpublique);
         
+        
+    }
+    public Object[][] transofrmerEnTableObject(){
+        Object[][] tab= new Object[getTr().size()][getTr().get("Nom").size()];
+        tab[0]=getTr().keySet().toArray();
+        for(int i=1;i<this.getTr().size();i++){
+            for(int j=0;j<getTr().get("Nom").size();j++){
+                tab[i][j]=getTr().get(tab[0][i].toString()).get(j);
+            }                    
+        }
+        
+        return tab;
         
     }
 

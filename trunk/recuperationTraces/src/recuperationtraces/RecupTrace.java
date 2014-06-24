@@ -170,7 +170,7 @@ public class RecupTrace  extends javax.swing.JDialog{
             while (br.ready())
             {
                 listeLogins.add(br.readLine());
-                //System.out.println("====> Traitement du login "+liste.get(liste.size()-1));
+                
             }
             //on remplit la premiere ligne de la HashMap avec une liste vide et une clé "Nom"
             traces.getTr().put("Nom", new ArrayList<String>());           
@@ -263,53 +263,7 @@ public class RecupTrace  extends javax.swing.JDialog{
             System.out.println("taille des logins : "+traces.getTr().get("Nom").size());
             System.out.println("taille d'un indicateur : "+traces.getTr().get("manip1_carte2/BcA2Apres").size());
             System.out.println("taille d'un indicateur : "+traces.getTr().get("manip1_carte2/apres/NoteQCM_q2").size());
-            /*
-                // listes des clés de la hashmap
-                List<String> listeCles = new ArrayList<String>();
-                //parcours des clés et remplissage de la liste
-                Iterator it = traces.getTr().keySet().iterator();
-                while (it.hasNext())
-                {
-                    listeCles.add(it.next().toString());
-                }
-            
-                //tableau qui contiendra les données de la HashMap
-                String[][] tab = new String[listeCles.size()][];
-               
-            
-                //parcours tous les indicateurs (clé)
-                for (int i = 0; i<listeCles.size(); i++)
-                {
-                    //parcours les noms d'utilisateurs
-                    for(int j=0;j<traces.getTr().get("Nom").size();j++){
-                        
-                        tab[i][j] = traces.getTr().get(listeCles.get(i)).get(j);
-                        System.out.println((listeCles.get(i)).toString()+"__");
-                    }
-                }
            
-                String[] logins = new String[traces.getTr().get("Nom").size()];
-                for(int i=0;i<traces.getTr().get("Nom").size();i++){
-                    logins[i]=traces.getTr().get("Nom").get(i);
-                }
-                JFrame fr = new JFrame("Traces");
-                JTable jt = new JTable(tab, logins){
-                    @Override
-                    public boolean getScrollableTracksViewportWidth() {
-                      return getPreferredSize().width < getParent().getWidth();
-                    }
-                };;
-                for (int i=0; i<traces.getTr().get("Nom").size()+1; i++)
-                    jt.getColumnModel().getColumn(i).setMinWidth(i==0?300: 200);
-                JScrollPane js = new JScrollPane(jt);
-                js.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-                js.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                fr.setContentPane(js);
-                fr.setSize(1024,768);
-                fr.setVisible(true);
-                fr.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-               */ 
-            
         } catch (IOException ex) {
             System.out.println("IOException");
         }
