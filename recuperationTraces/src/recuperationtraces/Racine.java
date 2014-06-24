@@ -8,12 +8,15 @@ package recuperationtraces;
 
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import org.rosuda.JRI.Rengine;
+import rjava.acces.ClientR;
 
 /**
  * classe racine de l'application qui contiendra une HashMap 
@@ -24,14 +27,16 @@ public class Racine {
     //ensuite, on créera une liste d'IndicateurImpl qui contiendra toutes les vues 
     //IndicateurImpl qui contiendra les données remonté du serveur
     //on ne le modifiera pas on créera des copies pour les modifications
+    ClientR clientR; // La référence principal à R
+    Rengine r;      // Le moteur de calcul de R
     IndicateursImpl traces; 
     IndicateursImpl tracesEtIndicateursCalcules;
     HashMap<String,IndicateursImpl> groupe;
     public DefaultTreeModel arbreModele;
-    /**
-     * constructeur de la racine
-     */
-    public Racine() {
+
+    public Racine() throws IOException {
+        clientR = new ClientR(new TextConsoleExemple());
+        r = clientR.getEngine();
         File fichier = new File("src/sauvegardeIndicateurs.dat");
         if (fichier.exists()){
             System.out.println("on charge le fichier et boum");
@@ -79,6 +84,86 @@ public class Racine {
         
     }
 
+    private void transfertMatriceVersR(String nomMatrice, Object[][] tab) 
+    {
+        
+        // La ligne d'attribution des noms de colonne aura la forme                           colnames(nomMatrice) = c("titre1", "titre2", ...)
+        StringBuffer ligneTitres = new StringBuffer("colnames("+nomMatrice+")=c(");
+        for (Object o: tab[0])
+            ligneTitres.append("\""+o.toString()+"\",");
+        ligneTitres.replace(ligneTitres.length()-1, ligneTitres.length(), ")");
+        
+        
+        // La premiere ligne de valeur lignes aura la forme                                    nomMatrice = c(val1, val2, ...)
+        StringBuffer sb = new StringBuffer(nomMatrice+"=c(");
+        for (Object o: tab[1])
+            sb.append(o.toString()+',');
+        sb.replace(sb.length()-1, sb.length(), ")");
+
+        r.eval(sb.toString());  // La ligne R est construite, on la fait évaluer
+        System.out.println("Calcul par R: "+sb.toString());
+
+        
+        // Les autres lignes de valeurs auront la forme                                    nomMatrice = rbind(nomMatrice,c(val1, val2, ...))
+        for (int i=2; i<tab.length; i++)
+        {
+            sb = new StringBuffer(nomMatrice+"=rbind("+nomMatrice+",c(");
+            for (Object o: tab[i])
+                sb.append(o.toString()+',');
+            sb.replace(sb.length()-1, sb.length(), "))");
+
+            r.eval(sb.toString());  // La ligne R est construite, on la fait évaluer
+            System.out.println("Calcul par R: "+sb.toString());
+        }
+        
+        // Attribution des noms de colonne
+        System.out.println("Calcul par R: "+ligneTitres.toString());
+        r.eval(ligneTitres.toString()); // La ligne R est construite, on la fait évaluer
+        
+
+        
+        r.eval(nomMatrice);
+    }
+    private void transfertTableauVersR(String nomMatrice, Object[] tab) 
+    {
+        
+        // La ligne d'attribution des noms de colonne aura la forme                           colnames(nomMatrice) = c("titre1", "titre2", ...)
+        StringBuffer ligneTitres = new StringBuffer("colnames("+nomMatrice+")=c(");
+        Object o= tab[0];
+            ligneTitres.append("\""+o.toString()+"\",");
+        ligneTitres.replace(ligneTitres.length()-1, ligneTitres.length(), ")");
+        
+        
+        // La premiere ligne de valeur lignes aura la forme                                    nomMatrice = c(val1, val2, ...)
+        StringBuffer sb = new StringBuffer(nomMatrice+"=c(");
+        Object o2= tab[1];
+            sb.append(o2.toString()+',');
+        sb.replace(sb.length()-1, sb.length(), ")");
+
+        r.eval(sb.toString());  // La ligne R est construite, on la fait évaluer
+        System.out.println("Calcul par R: "+sb.toString());
+
+        
+        // Les autres lignes de valeurs auront la forme                                    nomMatrice = rbind(nomMatrice,c(val1, val2, ...))
+        for (int i=2; i<tab.length; i++)
+        {
+            sb = new StringBuffer(nomMatrice+"=rbind("+nomMatrice+",c(");
+            Object o3= tab[i];
+                sb.append(o3.toString()+',');
+            sb.replace(sb.length()-1, sb.length(), "))");
+
+            r.eval(sb.toString());  // La ligne R est construite, on la fait évaluer
+            System.out.println("Calcul par R: "+sb.toString());
+        }
+        
+        // Attribution des noms de colonne
+        System.out.println("Calcul par R: "+ligneTitres.toString());
+        r.eval(ligneTitres.toString()); // La ligne R est construite, on la fait évaluer
+        
+
+        
+        r.eval(nomMatrice);
+    }
     public IndicateursImpl getTraces() {
         return traces;
     }
