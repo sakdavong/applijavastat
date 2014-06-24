@@ -208,34 +208,6 @@ public class IndicateursImplTest {
     }
 
     /**
-     * Test of creerMatrice method, of class IndicateursImpl.
-     */
-    @Test
-    public void testCreerMatrice() {
-        System.out.println("creerMatrice");
-        IndicateursImpl instance = null;
-        double[][] expResult = null;
-        double[][] result = instance.creerMatrice();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of creerTable method, of class IndicateursImpl.
-     */
-    @Test
-    public void testCreerTable() {
-        System.out.println("creerTable");
-        IndicateursImpl instance = null;
-        double[] expResult = null;
-        double[] result = instance.creerTable();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of sauver method, of class IndicateursImpl.
      */
     @Test
