@@ -27,6 +27,7 @@ public class SupprimerGroupe extends javax.swing.JPanel {
         initComponents();
         this.r=r;
         //r.arbre est dans la Racine et contient les les groupe crée
+        
         jTree1.setModel(r.arbreModele);
         jTree1.addTreeSelectionListener(new TreeSelectionListener() {
 

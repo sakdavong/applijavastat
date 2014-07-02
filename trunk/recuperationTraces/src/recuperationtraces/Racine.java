@@ -214,6 +214,7 @@ public class Racine implements Serializable{
             oos.writeObject(traces); // Ecriture d'un objet dans le flux
             oos.writeObject(tracesEtIndicateursCalcules);
             oos.writeObject(groupe);
+            oos.writeObject(arbreModele);
             oos.close(); // Fermeture du flux d'objet
             fos.close(); // Fermeture du flux d'octets
         
@@ -231,6 +232,7 @@ public class Racine implements Serializable{
                 traces = (IndicateursImpl)(ois.readObject()); // Lecture d'un objet dans le flux et attestation du type
                 tracesEtIndicateursCalcules=(IndicateursImpl)(ois.readObject());
                 groupe=(HashMap<String,IndicateursImpl>)(ois.readObject());
+                arbreModele=(DefaultTreeModel)(ois.readObject());
                 ois.close(); // Fermeture du flux d'objet
                 fis.close(); // Fermeture du flux d'octets
         } catch (FileNotFoundException ex) {
