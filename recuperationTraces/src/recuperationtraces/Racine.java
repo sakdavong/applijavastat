@@ -42,6 +42,11 @@ public class Racine implements Serializable{
     HashMap<String,IndicateursImpl> groupe;
     public DefaultTreeModel arbreModele;
 
+    /**
+     * constructeur de la racine
+     */
+
+
     public Racine() throws IOException {
 //        clientR = new ClientR(new TextConsoleExemple());
   //      r = clientR.getEngine();

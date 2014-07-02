@@ -8,6 +8,7 @@ package Ecouteurs;
 
 import IHM.AjouterIndicateur;
 import IHM.CreerGroupe;
+import IHM.FrameStats;
 import IHM.SupprimerIndicateur;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
@@ -97,6 +99,15 @@ public class EcouteurRecherche implements KeyListener{
                         dLM.addElement(key);
                         
                 ((SupprimerIndicateur)fenetre).getJListAllIndicateurs().setModel(dLM);
+                break;
+            case "Accueil" :
+                for(String key:l)
+                    //si la clé contient la chaine recherché
+                    if(key.contains(s))
+                        dLM.addElement(key);
+                        
+                ((FrameStats)fenetre.getAccessibleContext().getAccessibleParent()).getLesIndicateurs().setModel(dLM);
+                break;
         }
         
         System.out.println(s);
