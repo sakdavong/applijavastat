@@ -8,10 +8,17 @@ package recuperationtraces;
 
 import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -35,24 +42,37 @@ public class Racine {
     public DefaultTreeModel arbreModele;
 
     public Racine() throws IOException {
-        clientR = new ClientR(new TextConsoleExemple());
-        r = clientR.getEngine();
+//        clientR = new ClientR(new TextConsoleExemple());
+  //      r = clientR.getEngine();
         File fichier = new File("src/sauvegardeIndicateurs.dat");
         if (fichier.exists()){
             System.out.println("on charge le fichier et boum");
             
             traces = new IndicateursImpl(this);
-            traces.charger(fichier);
+            tracesEtIndicateursCalcules = new IndicateursImpl(this);
+            groupe=new HashMap<String,IndicateursImpl>();
+            charger(fichier);
         }else {
-            System.out.println("on recupere les traces");
+            System.out.println("on recupere les traces. ");
             recupererTrace();
-            System.out.println("fin de recupererTrace : on va sauvegarder");
-            traces.sauver(fichier);
+            System.out.println("fin de recupererTrace. ");
+            System.out.println("on calcul les nouveaux indicateur. ");
+            calculIndicateurs();
+            System.out.println("fin de calculIndicateurs. on va sauvegarder!!");
+            groupe=new HashMap<String,IndicateursImpl>();
+            sauver(fichier);
             System.out.println("fin de la sauvegarde");
         }
         DefaultMutableTreeNode Racine = new DefaultMutableTreeNode("groupe");
         arbreModele= new DefaultTreeModel(Racine);
-        groupe = new HashMap();
+    }
+     
+   /**
+    * une méthode pour recuprer les Traces du serveur et les sauvegarder dans une HashMap 
+    * pour pouvoir l'utiliser aprés sans avoir à se reconnecter à chaque fois 
+    * 
+    */
+    private void calculIndicateurs(){
         tracesEtIndicateursCalcules = new IndicateursImpl(this);
         tracesEtIndicateursCalcules.setTr(traces.getTr());
         //on construit la Hashmap qui contiendra les indicateurs remontés du serveur 
@@ -71,12 +91,6 @@ public class Racine {
         System.out.println("taille de la HashMap : "+tracesEtIndicateursCalcules.getTr().size());
         //tracesEtIndicateursCalcules.afficher();
     }
-     
-   /**
-    * une méthode pour recuprer les Traces du serveur et les sauvegarder dans une HashMap 
-    * pour pouvoir l'utiliser aprés sans avoir à se reconnecter à chaque fois 
-    * 
-    */
     private void recupererTrace(){
         RecupTrace dialog = new RecupTrace(new javax.swing.JFrame(), true,this);
         System.out.println("fin de recupTrace");
@@ -180,10 +194,54 @@ public class Racine {
         this.groupe = groupe;
     }
     
-    
+    public void sauver(File monFichier) {
+    FileOutputStream fos= null; 
+        ObjectOutputStream oos = null;
+        try {      
+            
+            fos = new FileOutputStream(monFichier, false); // Création flux d'octets
+            oos = new ObjectOutputStream(fos); // Création du flux d'objets à partir du flux d'octets
+        
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(IndicateursImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(IndicateursImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {      
+            // Utilisation de la méthode void writeObject(Object o) de oos:
+            oos.writeObject(traces); // Ecriture d'un objet dans le flux
+            oos.writeObject(tracesEtIndicateursCalcules);
+            oos.writeObject(groupe);
+            oos.close(); // Fermeture du flux d'objet
+            fos.close(); // Fermeture du flux d'octets
+        
+        } catch (IOException ex) {
+            Logger.getLogger(IndicateursImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }         
+    }
+    public void charger(File monFichier) {
+        
+        FileInputStream fis = null; 
+        ObjectInputStream ois = null;
+        try {
+                fis = new FileInputStream(monFichier); // Création flux d'octets
+                ois = new ObjectInputStream(fis); // Création du flux d'objets à partir du flux d'octets
+                traces = (IndicateursImpl)(ois.readObject()); // Lecture d'un objet dans le flux et attestation du type
+                tracesEtIndicateursCalcules=(IndicateursImpl)(ois.readObject());
+                groupe=(HashMap<String,IndicateursImpl>)(ois.readObject());
+                ois.close(); // Fermeture du flux d'objet
+                fis.close(); // Fermeture du flux d'octets
+        } catch (FileNotFoundException ex) {
+                
+        } catch (IOException ex) {
+                Logger.getLogger(IndicateursImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(IndicateursImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }
-    
-  
     /**
      * La classe IndicateurImpl prend la classe racine en parametre pour pouvoir utiliser
      * la HashMap qui contient les Traces Sauvgardées
