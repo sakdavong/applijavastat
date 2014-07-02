@@ -7,6 +7,7 @@
 package IHM;
 
 import Ecouteurs.EcouteurRecherche;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -219,6 +220,8 @@ public class CreerGroupe extends javax.swing.JPanel {
         r.arbreModele.insertNodeInto(noeud, racine, 0);
         //racine.add(noeud);
         // TODO add your handling code here:
+        File fichier = new File("src/sauvegardeIndicateurs.dat");
+        r.sauver(fichier);
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
