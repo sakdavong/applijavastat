@@ -188,7 +188,7 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
      * permet de sauvegarder un IndicateurImpl (serialisation)
      * @param monFichier fichier dans lequel on charge
      */
-    public void sauver(File monFichier) {
+    /* public void sauver(File monFichier) {
     FileOutputStream fos= null; 
         ObjectOutputStream oos = null;
         try {      
@@ -217,7 +217,7 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
      * permet de charger un IndicateurImpl
      * @param monFichier fichier dans lequel on charge
      */
-    public void charger(File monFichier) {
+    /*public void charger(File monFichier) {
         
         FileInputStream fis = null; 
         ObjectInputStream ois = null;
@@ -235,7 +235,7 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
             Logger.getLogger(IndicateursImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
+    }*/
    
     /**
      * modifie les notes normalisées qui sont égale à -0.33 en -1
@@ -741,10 +741,12 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
     }
     public Object[][] transofrmerEnTableObject(){
         Object[][] tab= new Object[getTr().size()][getTr().get("Nom").size()];
-        tab[0]=getTr().keySet().toArray();
+        for(int i=0;i<getTr().keySet().size();i++){
+            tab[0][i]= getTr().keySet().toArray()[i];
+        }
         for(int i=1;i<this.getTr().size();i++){
-            for(int j=0;j<getTr().get("Nom").size();j++){
-                tab[i][j]=getTr().get(tab[0][i].toString()).get(j);
+            for(int j=0;j<getTr().keySet().size();j++){
+                tab[i][j]=getTr().get(tab[0][j].toString()).get(j);
             }                    
         }
         
