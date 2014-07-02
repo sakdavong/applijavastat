@@ -14,6 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +31,7 @@ import rjava.acces.ClientR;
  * contenant uniquement les données remontées du serveur
  * @author Tigro
  */
-public class Racine {
+public class Racine implements Serializable{
     //ensuite, on créera une liste d'IndicateurImpl qui contiendra toutes les vues 
     //IndicateurImpl qui contiendra les données remonté du serveur
     //on ne le modifiera pas on créera des copies pour les modifications
