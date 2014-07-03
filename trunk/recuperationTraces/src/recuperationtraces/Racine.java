@@ -66,11 +66,12 @@ public class Racine implements Serializable{
             calculIndicateurs();
             System.out.println("fin de calculIndicateurs. on va sauvegarder!!");
             groupe=new HashMap<String,IndicateursImpl>();
+            DefaultMutableTreeNode Racine = new DefaultMutableTreeNode("groupe");
+            arbreModele= new DefaultTreeModel(Racine);
             sauver(fichier);
             System.out.println("fin de la sauvegarde");
         }
-        DefaultMutableTreeNode Racine = new DefaultMutableTreeNode("groupe");
-        arbreModele= new DefaultTreeModel(Racine);
+
     }
      
    /**

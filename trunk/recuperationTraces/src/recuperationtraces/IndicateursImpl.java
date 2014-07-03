@@ -739,6 +739,7 @@ public class IndicateursImpl extends AbstractListModel implements Indicateurs{
         
         
     }
+    
     public Object[][] transofrmerEnTableObject(){
         Object[][] tab= new Object[getTr().size()][getTr().get("Nom").size()];
         for(int i=0;i<getTr().keySet().size();i++){
